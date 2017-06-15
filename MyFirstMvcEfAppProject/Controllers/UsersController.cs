@@ -14,6 +14,18 @@ namespace MyFirstMvcEfAppProject.Controllers
     {
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
 
+		public ActionResult List() {
+			return Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Get(int? id) {
+			return Json(db.Users.Find(id), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Remove(int id) {
+			return Json(DeleteConfirmed(id), JsonRequestBehavior.AllowGet);
+		}
+
         // GET: Users
         public ActionResult Index()
         {

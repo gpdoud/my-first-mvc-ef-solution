@@ -34,11 +34,14 @@ namespace MyFirstMvcEfAppProject.Controllers
             }
             return View(product);
         }
-
+		
         // GET: Products/Create
         public ActionResult Create()
         {
-            return View();
+			ProductEditView pev = new ProductEditView {
+				Vendors = db.Vendors.ToList()
+			};
+            return View(pev);
         }
 
         // POST: Products/Create
@@ -46,9 +49,18 @@ namespace MyFirstMvcEfAppProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,VendorId,Name,VendorPartNumber,Price,Unit,PhotoPath")] Product product)
+        public ActionResult Create([Bind(Include = "ID,VendorId,Name,VendorPartNumber,Price,Unit,PhotoPath")] ProductEditView pev)
         {
-            if (ModelState.IsValid)
+			Product product = new Product {
+				ID = pev.ID,
+				VendorId = pev.VendorId,
+				Name = pev.Name,
+				VendorPartNumber = pev.VendorPartNumber,
+				Price = pev.Price,
+				Unit = pev.Unit,
+				PhotoPath = pev.PhotoPath
+			};
+			if (ModelState.IsValid)
             {
                 db.Products.Add(product);
                 db.SaveChanges();
