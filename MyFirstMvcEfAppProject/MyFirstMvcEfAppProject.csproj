@@ -282,6 +282,7 @@
     <Content Include="Views\PurchaseRequestLineItems\Details.cshtml" />
     <Content Include="Views\PurchaseRequestLineItems\Edit.cshtml" />
     <Content Include="Views\PurchaseRequestLineItems\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
