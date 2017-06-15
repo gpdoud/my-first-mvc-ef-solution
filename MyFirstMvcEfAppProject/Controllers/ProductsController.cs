@@ -70,17 +70,37 @@ namespace MyFirstMvcEfAppProject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+			ProductEditView pev = new ProductEditView {
+				ID = product.ID,
+				Name = product.Name,
+				VendorPartNumber = product.VendorPartNumber,
+				Price = product.Price,
+				Unit = product.Unit,
+				PhotoPath = product.PhotoPath,
+				VendorId = product.VendorId,
+				Vendors = db.Vendors.ToList()
+			};
+			return View(pev);
+            //return View(product);
         }
 
         // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable	the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,VendorId,Name,VendorPartNumber,Price,Unit,PhotoPath")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,VendorId,Name,VendorPartNumber,Price,Unit,PhotoPath")] ProductEditView pev)
         {
-            if (ModelState.IsValid)
+			Product product = new Product {
+				ID = pev.ID,
+				VendorId = pev.VendorId,
+				Name = pev.Name,
+				VendorPartNumber = pev.VendorPartNumber,
+				Price = pev.Price,
+				Unit = pev.Unit,
+				PhotoPath = pev.PhotoPath
+			};
+			if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();

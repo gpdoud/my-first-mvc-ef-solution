@@ -28,5 +28,6 @@ namespace MyFirstMvcEfAppProject.Models
         public System.Data.Entity.DbSet<MyFirstMvcEfAppProject.Models.PurchaseRequest> PurchaseRequests { get; set; }
 
         public System.Data.Entity.DbSet<MyFirstMvcEfAppProject.Models.PurchaseRequestLineItem> PurchaseRequestLineItems { get; set; }
+
     }
 }

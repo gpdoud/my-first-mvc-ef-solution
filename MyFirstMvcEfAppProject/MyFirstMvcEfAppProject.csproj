@@ -197,9 +197,18 @@
     <Compile Include="Migrations\201706141947430_Initialize.Designer.cs">
       <DependentUpon>201706141947430_Initialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706151514090_Added-ProductEditView.cs" />
+    <Compile Include="Migrations\201706151514090_Added-ProductEditView.Designer.cs">
+      <DependentUpon>201706151514090_Added-ProductEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706151547461_Removed-ProductEditView-from-context.cs" />
+    <Compile Include="Migrations\201706151547461_Removed-ProductEditView-from-context.Designer.cs">
+      <DependentUpon>201706151547461_Removed-ProductEditView-from-context.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MyFirstMvcEfAppProjectContext.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductEditView.cs" />
     <Compile Include="Models\PurchaseRequest.cs" />
     <Compile Include="Models\PurchaseRequestLineItem.cs" />
     <Compile Include="Models\User.cs" />
@@ -270,7 +279,7 @@
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Edit-Orig.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\PurchaseRequests\Create.cshtml" />
     <Content Include="Views\PurchaseRequests\Delete.cshtml" />
@@ -283,6 +292,7 @@
     <Content Include="Views\PurchaseRequestLineItems\Edit.cshtml" />
     <Content Include="Views\PurchaseRequestLineItems\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -305,6 +315,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706141947430_Initialize.resx">
       <DependentUpon>201706141947430_Initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706151514090_Added-ProductEditView.resx">
+      <DependentUpon>201706151514090_Added-ProductEditView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706151547461_Removed-ProductEditView-from-context.resx">
+      <DependentUpon>201706151547461_Removed-ProductEditView-from-context.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
