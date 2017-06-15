@@ -1,5 +1,6 @@
 namespace MyFirstMvcEfAppProject.Migrations
 {
+    using MyFirstMvcEfAppProject.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,12 @@ namespace MyFirstMvcEfAppProject.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Users.AddOrUpdate(
+                u => u.ID,
+                new User { UserName="Greg",Password="password",FirstName="Greg",LastName="Doud",
+                            Email="gdoud@maxtrain.com",Phone="513-555-1212",IsAdmin=true,IsReviewer=false }
+            );
+            context.SaveChanges();
         }
     }
 }
