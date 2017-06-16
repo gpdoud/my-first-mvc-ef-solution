@@ -7,9 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyFirstMvcEfAppProject.Models;
+using Api = System.Web.Http;
 
 namespace MyFirstMvcEfAppProject.Controllers
 {
+	class Msg {
+		public string Result { get; set; }
+		public string Message { get; set; }
+	}
     public class UsersController : Controller
     {
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
@@ -22,12 +27,45 @@ namespace MyFirstMvcEfAppProject.Controllers
 			return Json(db.Users.Find(id), JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult Remove(int id) {
-			return Json(DeleteConfirmed(id), JsonRequestBehavior.AllowGet);
+		public ActionResult Remove(int? id) {
+			if (id == null) {
+				var rc = new Msg { Result = "Failed", Message = "No Id supplied" };
+				return Json(rc, JsonRequestBehavior.AllowGet);
+			}
+			User user = db.Users.Find(id);
+			if(user == null) {
+				return Json(new Msg { Result="Failed",Message=$"User not found for id {id}" }, JsonRequestBehavior.AllowGet);
+			}
+			db.Users.Remove(user);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully deleted" }, JsonRequestBehavior.AllowGet);
 		}
 
-        // GET: Users
-        public ActionResult Index()
+		public ActionResult Add([Api.FromBody] User user) {
+			db.Users.Add(user);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully added" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Change([Api.FromBody] User aUser) {
+			User user = db.Users.Find(aUser.ID);
+			user.FirstName = aUser.FirstName;
+			user.LastName = aUser.LastName;
+			user.UserName = aUser.UserName;
+			user.Phone = aUser.Phone;
+			user.Email = aUser.Email;
+			user.IsAdmin = aUser.IsAdmin;
+			user.IsReviewer = aUser.IsReviewer;
+			try {
+				db.SaveChanges();
+			} catch (Exception ex) {
+				var e = ex;
+			}
+			return Json(new Msg { Result = "OK", Message = "Successfully updated" }, JsonRequestBehavior.AllowGet);
+		}
+
+		// GET: Users
+		public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
