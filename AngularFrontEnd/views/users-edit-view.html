@@ -1,0 +1,62 @@
+<div style="width:60%;margin:10px auto;">
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+	<div>
+		<div class="form-group row">
+			<label for="user-id" class="col-md-3 col-form-label">ID</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.SelectedUser.ID" id="user-id">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-user-name" class="col-md-3 col-form-label">User Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedUser.UserName" id="user-user-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-first-name" class="col-md-3 col-form-label">First Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedUser.FirstName" id="user-first-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-last-name" class="col-md-3 col-form-label">Last Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedUser.LastName" id="user-last-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-Email" class="col-md-3 col-form-label">Email</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedUser.Email" id="user-email">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-phone" class="col-md-3 col-form-label">Phone</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedUser.Phone" id="user-phone">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-reviewer" class="col-md-3 col-form-label">Reviewer</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="checkbox" ng-model="ctrl.SelectedUser.IsReviewer" id="user-reviewer">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-admin" class="col-md-3 col-form-label">Admin</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="checkbox" ng-model="ctrl.SelectedUser.IsAdmin" id="user-admin">
+			</div>
+	  	</div>
+
+	  	<button ng-click="ctrl.Update(ctrl.SelectedUser)">Update</button>
+	</div>
+</div>

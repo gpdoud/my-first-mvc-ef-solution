@@ -19,6 +19,7 @@ namespace MyFirstMvcEfAppProject.Controllers {
 
         // POST api/values
         public void Post([FromBody]string value) {
+			var v = value;
         }
 
         // PUT api/values/5

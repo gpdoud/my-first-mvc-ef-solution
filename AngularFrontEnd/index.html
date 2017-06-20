@@ -13,7 +13,7 @@
 </head>
 <body ng-controller="UserCtrl as ctrl">
 <div id="top">
-	<p>This is a line above the menu</p>
+	<span>This is a line above the menu</span>
 </div>
 <div id="menu">
 	<nav class="navbar navbar-default">
@@ -33,13 +33,13 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a href="#/">HOME <span class="sr-only">(current)</span></a></li>
+	        <li><a href="#/users">USERS</a></li>
 	        <li><a href="#/about">ABOUT</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>	
 </div>
-	<p>1 + 2 = {{1+2}}</p>
 	<div ng-view></div>
 </body>
 </html>

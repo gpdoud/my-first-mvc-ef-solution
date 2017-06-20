@@ -2,3 +2,9 @@ body {
 	font: normal normal normal 12pt/14.4pt Tahoma, Arial, sans-serif;
 	border: 0; padding: 0; margin: 0;
 }
+#top {
+	display: none;
+}
+#PageTitle {
+	/* The title on every page */
+}
