@@ -20,15 +20,24 @@
 				</tr>
 				<tr>
 					<td>
-						<span class="DetailHeading">Email</span>
+						<span class="DetailHeading">Password</span>
 					</td>
-					<td><span ng-bind="ctrl.SelectedUser.Email"></span></td>
+					<td>
+						<span ng-if="ctrl.DisplayPassword" ng-bind="ctrl.SelectedUser.Password"></span>
+						<span ng-if="!ctrl.DisplayPassword">********</span>
+					</td>
 				</tr>
 				<tr>
 					<td>
 						<span class="DetailHeading">Phone</span>
 					</td>
 					<td><span ng-bind="ctrl.SelectedUser.Phone"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Email</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedUser.Email"></span></td>
 				</tr>
 				<tr>
 					<td>

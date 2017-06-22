@@ -1,0 +1,48 @@
+<div>
+	<div>
+		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
+		<span> - </span>
+		<span id="PageAddLink"><a href="#/purchaseRequests/add">Create New</a></span>	
+		<span> - </span>
+		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
+		<span> - </span>
+		<label>Sort: 
+			<select ng-model="ctrl.SortProperty">
+				<option ng-repeat="field in ['','Code','Name','Address','City','State','Zip','Phone','Email']">{{field}}</option>
+			</select>
+		</label>
+		<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Description</td>
+					<td>Justification</td>
+					<td>DateNeeded</td>
+					<td>DeliveryMode</td>
+					<td>DocsAttached</td>
+					<td>Status</td>
+					<td>Total</td>
+					<td>User</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="purchaseRequest in ctrl.PurchaseRequests | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
+					<td><span ng-bind="purchaseRequest.Description"></span></td>
+					<td><span ng-bind="purchaseRequest.Justification"></span></td>
+					<td><span ng-bind="purchaseRequest.DateNeeded | date: 'MM/dd/yyyy'"></span></td>
+					<td><span ng-bind="purchaseRequest.DeliveryMode"></span></td>
+					<td><span ng-bind="purchaseRequest.DocsAttached"></span></td>
+					<td><span ng-bind="purchaseRequest.Status"></span></td>
+					<td><span ng-bind="purchaseRequest.Total"></span></td>
+					<td><span ng-bind="purchaseRequest.User.LastName"></span></td>
+					<td>
+						<span><a href="#/purchaseRequests/detail/{{purchaseRequest.ID}}">Detail</a></span> |
+						<span><a href="#/purchaseRequests/edit/{{purchaseRequest.ID}}">Edit</a></span> |
+						<span><a href="#/purchaseRequests/remove/{{purchaseRequest.ID}}">Delete</a></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyFirstMvcEfAppProject.Models;
+using Api = System.Web.Http;
+
 
 namespace MyFirstMvcEfAppProject.Controllers
 {
@@ -14,8 +16,48 @@ namespace MyFirstMvcEfAppProject.Controllers
     {
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
 
-        // GET: PurchaseRequests
-        public ActionResult Index()
+		public ActionResult List() {
+			return Json(db.PurchaseRequests.ToList(), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Get(int? id) {
+			return Json(db.PurchaseRequests.Find(id), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Remove(int? id) {
+			if (id == null) {
+				var rc = new Msg { Result = "Failed", Message = "No Id supplied" };
+				return Json(rc, JsonRequestBehavior.AllowGet);
+			}
+			PurchaseRequest vendor = db.PurchaseRequests.Find(id);
+			if (vendor == null) {
+				return Json(new Msg { Result = "Failed", Message = $"PurchaseRequest not found for id {id}" }, JsonRequestBehavior.AllowGet);
+			}
+			db.PurchaseRequests.Remove(vendor);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully deleted" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Add([Api.FromBody] PurchaseRequest purchaseRequest) {
+			if (purchaseRequest.Status == null)
+				return new EmptyResult();
+			db.PurchaseRequests.Add(purchaseRequest);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully added" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Change([Api.FromBody] PurchaseRequest aPurchaseRequest) {
+			if (aPurchaseRequest.ID == 0)
+				return Json(new Msg { Result = "Failure", Message = "aPurchaseRequest is empty" }, JsonRequestBehavior.AllowGet);
+			PurchaseRequest purchaseRequest = db.PurchaseRequests.Find(aPurchaseRequest.ID);
+			purchaseRequest.UpdateAllProperties(aPurchaseRequest);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully updated" }, JsonRequestBehavior.AllowGet);
+		}
+
+
+		// GET: PurchaseRequests
+		public ActionResult Index()
         {
             var purchaseRequests = db.PurchaseRequests.Include(p => p.User);
             return View(purchaseRequests.ToList());

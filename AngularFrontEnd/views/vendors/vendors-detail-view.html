@@ -1,0 +1,62 @@
+<div>
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+	<div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<span class="DetailHeading">Code</span>
+					</td>
+					<td>
+						<span ng-bind="ctrl.SelectedVendor.Code"></span> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Name</span>
+					</td>
+					<td>
+						<span ng-bind="ctrl.SelectedVendor.Name"></span> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Address</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedVendor.Address"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">City/State/Zip</span>
+					</td>
+					<td>
+						<span ng-bind="ctrl.SelectedVendor.City"></span>&nbsp;
+						<span ng-bind="ctrl.SelectedVendor.State"></span>,&nbsp
+						<span ng-bind="ctrl.SelectedVendor.Zip"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Phone</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedVendor.Phone"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Email</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedVendor.Email"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Recommended</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedVendor.IsRecommended"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	<span><a href="#/vendors/edit/{{ctrl.SelectedVendor.ID}}">Edit</a></span> |
+		  	<button ng-click="ctrl.Remove(ctrl.SelectedVendor.ID)">Delete</button>
+
+	</div>
+</div>

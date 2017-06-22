@@ -33,8 +33,8 @@ namespace MyFirstMvcEfAppProject.Controllers
 				return Json(rc, JsonRequestBehavior.AllowGet);
 			}
 			User user = db.Users.Find(id);
-			if(user == null) {
-				return Json(new Msg { Result="Failed",Message=$"User not found for id {id}" }, JsonRequestBehavior.AllowGet);
+			if (user == null) {
+				return Json(new Msg { Result = "Failed", Message = $"User not found for id {id}" }, JsonRequestBehavior.AllowGet);
 			}
 			db.Users.Remove(user);
 			db.SaveChanges();
@@ -42,6 +42,8 @@ namespace MyFirstMvcEfAppProject.Controllers
 		}
 
 		public ActionResult Add([Api.FromBody] User user) {
+			if (user.UserName == null)
+				return new EmptyResult();
 			db.Users.Add(user);
 			db.SaveChanges();
 			return Json(new Msg { Result = "OK", Message = "Successfully added" }, JsonRequestBehavior.AllowGet);

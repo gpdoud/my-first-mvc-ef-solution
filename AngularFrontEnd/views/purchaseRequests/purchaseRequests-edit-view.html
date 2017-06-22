@@ -1,0 +1,71 @@
+<div style="width:60%;margin:10px auto;">
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+	<div>
+		<div class="form-group row">
+			<label for="purchaseRequest-id" class="col-md-3 col-form-label">ID</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.SelectedPurchaseRequest.ID" id="purchaseRequest-id">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-description" class="col-md-3 col-form-label">Description</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Description" id="purchaseRequest-description">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-justification" class="col-md-3 col-form-label">Justification</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Justification" id="purchaseRequest-justification">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-dateneeded" class="col-md-3 col-form-label">DateNeeded</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="Address" ng-model="ctrl.SelectedPurchaseRequest.DateNeeded" id="purchaseRequest-dateneeded">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-deliverymode" class="col-md-3 col-form-label">DeliveryMode</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.DeliveryMode" id="purchaseRequest-deliverymode">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-docsattached" class="col-md-3 col-form-label">DocsAttached</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.DocsAttached" id="purchaseRequest-docsattached">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-status" class="col-md-3 col-form-label">Status</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Status" id="purchaseRequest-status">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-total" class="col-md-3 col-form-label">Total</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Total" id="purchaseRequest-total">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
+			 <div class="col-md-9">
+			 	<select class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user">
+			 		<option ng-repeat="user in ctrl.Users" value={{user.ID}}>{{user.LastName}}</option>
+			 	</select>
+			</div>
+	  	</div>
+
+	  	<button ng-click="ctrl.Update(ctrl.SelectedPurchaseRequest)">Update</button>
+	</div>
+</div>

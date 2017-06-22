@@ -23,5 +23,16 @@ namespace MyFirstMvcEfAppProject.Models {
 
         public int UserId { get; set; }
         public virtual User User { get; set; }
-    }
+
+		public void UpdateAllProperties(PurchaseRequest purchaseRequest) {
+			this.Description = purchaseRequest.Description;
+			this.Justification = purchaseRequest.Justification;
+			this.DateNeeded = purchaseRequest.DateNeeded;
+			this.DeliveryMode = purchaseRequest.DeliveryMode;
+			this.DocsAttached = purchaseRequest.DocsAttached;
+			this.Status = purchaseRequest.Status;
+			this.Total = purchaseRequest.Total;
+			this.UserId = purchaseRequest.UserId;
+		}
+	}
 }

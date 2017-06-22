@@ -5,36 +5,66 @@
 <script lang="javascript">
 $().ready(function() {
 
+	var url = "http://localhost:62008/";
+
 	$("#get").click(function() {
-		$.get("http://localhost:58835/api/Values")
+		$.get(url+"api/Users")
 			.done(function(resp) {
 				console.log(resp);
 			});
 	});
 	$("#getid").click(function() {
-		$.get("http://localhost:58835/api/Values/1")
+		$.get(url+"api/Users/1")
 			.done(function(resp) {
 				console.log(resp);
 			});
 	});
 	$("#post").click(function() {
+		var user = {
+			ID: 21,
+			UserName: 'ABC',
+			Password: 'BBB',
+			FirstName: 'CCC',
+			LastName: 'DDD',
+			Phone: 'EEE',
+			Email: 'FFF',
+			IsReviewer: true,
+			IsAdmin: true
+		};
+		$.post(url+"api/Users", user)
+		.done(function (response) {
+		  console.log(response);
+		});
+	});
+	$("#put").click(function() {
+		var user = {
+			ID: 0,
+			UserName: 'CBA',
+			Password: 'CCC',
+			FirstName: 'DDD',
+			LastName: 'EEE',
+			Phone: 'FFF',
+			Email: 'GGG',
+			IsReviewer: true,
+			IsAdmin: true
+		};
 		var settings = {
-		  // "async": true,
-		  // "crossDomain": true,
-		  "url": "http://localhost:58835/api/Values"
-		  ,"method": "POST"
-		  // ,"headers": {
-		    // "content-type": "application/json"
-		    // "cache-control": "no-cache",
-		    // "postman-token": "36eef326-eb4b-53be-b242-efba8fb5b615"
-		  // }
-		  ,"processData": false
-		  ,"data": "\"'id':'ABC'\""
+		  "async": true,
+		  "crossDomain": true,
+		  "url": url+"api/Users",
+		  "method": "PUT",
+		  "headers": {
+		    "content-type": "application/json",
+		    "cache-control": "no-cache",
+		    "postman-token": "772224a1-dba9-5768-fe6f-f48cd9106d5e"
+		  },
+		  "processData": false,
+		  "data": "{\n\t\"ID\":\"\"\n\t,\"UserName\":\"007\"\n\t,\"Password\":\"XXX\"\n\t,\"FirstName\":\"XXX\"\n\t,\"LastName\":\"XXX\"\n\t,\"Phone\":\"XXX\"\n\t,\"Email\":\"XXX\"\n\t,\"IsReviewer\":true\n\t,\"IsAdmin\":true\n}"
 		}
 
 		$.ajax(settings).done(function (response) {
 		  console.log(response);
-		});
+		});		
 	});
 
 });
@@ -44,5 +74,6 @@ $().ready(function() {
 	<button id="get">Get</button>
 	<button id="getid">GetById</button>
 	<button id="post">Post</button>
+	<button id="put">Put</button>
 </body>
 </html>

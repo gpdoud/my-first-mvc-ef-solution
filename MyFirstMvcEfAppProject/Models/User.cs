@@ -32,5 +32,15 @@ namespace MyFirstMvcEfAppProject.Models {
         public bool IsReviewer { get; set; }
         public bool IsAdmin { get; set; }
 
+		public void UpdateAllProperties(User user) {
+			this.UserName = user.UserName;
+			this.Password = user.Password;
+			this.FirstName = user.FirstName;
+			this.LastName = user.LastName;
+			this.Phone = user.Phone;
+			this.Email = user.Email;
+			this.IsReviewer = user.IsReviewer;
+			this.IsAdmin = user.IsAdmin;
+		}
     }
 }

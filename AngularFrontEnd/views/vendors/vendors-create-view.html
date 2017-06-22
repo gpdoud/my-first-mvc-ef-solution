@@ -1,0 +1,76 @@
+<div style="width:60%;margin:10px auto;">
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Add</span></div>
+	<div>
+		<div class="form-group row">
+			<label for="vendor-id" class="col-md-3 col-form-label">ID</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.NewVendor.ID" id="vendor-id">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-code" class="col-md-3 col-form-label">Code</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.Code" id="vendor-code">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-vendor-name" class="col-md-3 col-form-label">Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.Name" id="vendor-vendor-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-Address" class="col-md-3 col-form-label">Address</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="Address" ng-model="ctrl.NewVendor.Address" id="vendor-Address">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-city" class="col-md-3 col-form-label">City</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.City" id="vendor-city">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-state" class="col-md-3 col-form-label">State</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.State" id="vendor-state">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-zip" class="col-md-3 col-form-label">Zip</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.Zip" id="vendor-zip">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-phone" class="col-md-3 col-form-label">Phone</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.Phone" id="vendor-phone">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-Email" class="col-md-3 col-form-label">Email</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewVendor.Email" id="vendor-email">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="vendor-recommended" class="col-md-3 col-form-label">Recommended</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="checkbox" ng-model="ctrl.NewVendor.IsRecommended" id="vendor-recommendeed">
+			</div>
+	  	</div>
+
+	  	<button ng-click="ctrl.Add(ctrl.NewVendor)">Add</button>
+	</div>
+</div>

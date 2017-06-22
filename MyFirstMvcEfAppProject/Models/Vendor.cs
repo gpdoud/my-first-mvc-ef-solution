@@ -34,5 +34,16 @@ namespace MyFirstMvcEfAppProject.Models {
         public string Email { get; set; }
         public bool IsRecommended { get; set; }
 
-    }
+		public void UpdateAllProperties(Vendor vendor) {
+			this.Code = vendor.Code;
+			this.Name = vendor.Name;
+			this.Address = vendor.Address;
+			this.City = vendor.City;
+			this.State = vendor.State;
+			this.Zip = vendor.Zip;
+			this.Phone = vendor.Phone;
+			this.Email = vendor.Email;
+			this.IsRecommended = vendor.IsRecommended;
+		}
+	}
 }

@@ -1,0 +1,46 @@
+<div>
+	<div>
+		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
+		<span> - </span>
+		<span id="PageAddLink"><a href="#/vendors/add">Create New</a></span>	
+		<span> - </span>
+		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
+		<span> - </span>
+		<label>Sort: 
+			<select ng-model="ctrl.SortProperty">
+				<option ng-repeat="field in ['','Code','Name','Address','City','State','Zip','Phone','Email']">{{field}}</option>
+			</select>
+		</label>
+		<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Code</td>
+					<td>Name</td>
+					<td>Address</td>
+					<td>City/State/Zip</td>
+					<td>Phone</td>
+					<td>Email</td>
+					<td>Recommended</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="vendor in ctrl.Vendors | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
+					<td><span ng-bind="vendor.Code"></span></td>
+					<td><span ng-bind="vendor.Name"></span></td>
+					<td><span ng-bind="vendor.Address"></span></td>
+					<td><span ng-bind="vendor.City"></span>, <span ng-bind="vendor.State"></span> <span ng-bind="vendor.Zip"></span></td>
+					<td><span ng-bind="vendor.Phone"></span></td>
+					<td><span ng-bind="vendor.Email"></span></td>
+					<td><span ng-bind="vendor.IsRecommended"></span></td>
+					<td>
+						<span><a href="#/vendors/detail/{{vendor.ID}}">Detail</a></span> |
+						<span><a href="#/vendors/edit/{{vendor.ID}}">Edit</a></span> |
+						<span><a href="#/vendors/remove/{{vendor.ID}}">Delete</a></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

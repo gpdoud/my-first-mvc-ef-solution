@@ -1,5 +1,5 @@
 <div style="width:60%;margin:10px auto;">
-	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Add</span></div>
 	<div>
 		<div class="form-group row">
 			<label for="user-id" class="col-md-3 col-form-label">ID</label>
@@ -12,6 +12,13 @@
 			<label for="user-user-name" class="col-md-3 col-form-label">User Name</label>
 			 <div class="col-md-9">
 			 	<input class="form-control" type="text" ng-model="ctrl.NewUser.UserName" id="user-user-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-password" class="col-md-3 col-form-label">Password</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="password" ng-model="ctrl.NewUser.Password" id="user-password">
 			</div>
 	  	</div>
 
@@ -30,16 +37,16 @@
 	  	</div>
 
 		<div class="form-group row">
-			<label for="user-Email" class="col-md-3 col-form-label">Email</label>
+			<label for="user-phone" class="col-md-3 col-form-label">Phone</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewUser.Email" id="user-email">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewUser.Phone" id="user-phone">
 			</div>
 	  	</div>
 
 		<div class="form-group row">
-			<label for="user-phone" class="col-md-3 col-form-label">Phone</label>
+			<label for="user-Email" class="col-md-3 col-form-label">Email</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewUser.Phone" id="user-phone">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewUser.Email" id="user-email">
 			</div>
 	  	</div>
 
@@ -57,6 +64,6 @@
 			</div>
 	  	</div>
 
-	  	<button ng-click="ctrl.Add(ctrl.NewUser)">Update</button>
+	  	<button ng-click="ctrl.Add(ctrl.NewUser)">Add</button>
 	</div>
 </div>
