@@ -48,7 +48,8 @@ namespace MyFirstMvcEfAppProject.Controllers
 		}
 
 		public ActionResult Change([Api.FromBody] User aUser) {
-			if (aUser.ID == 0) return Json(new Msg { Result = "Failure", Message = "aUser is empty" }, JsonRequestBehavior.AllowGet);
+			if (aUser.ID == 0)
+				return Json(new Msg { Result = "Failure", Message = "aUser is empty" }, JsonRequestBehavior.AllowGet);
 			User user = db.Users.Find(aUser.ID);
 			user.FirstName = aUser.FirstName;
 			user.LastName = aUser.LastName;

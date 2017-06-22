@@ -54,4 +54,20 @@ function UserCtrl($http, $routeParams, $location) {
 				}
 			)
 		}
+
+		self.Remove = function(id) {
+			$http.post("http://localhost:62008/Users/Remove/" + id.toString())
+			.then(
+				// if successful
+				function(resp) {
+					console.log("REMOVE SUCCESS!", resp);
+					$location.path("/users")
+				},
+				// if error
+				function(err) {
+					console.log("REMOVE ERROR:", err);
+
+				}
+			)
+		}
 }
