@@ -9,6 +9,7 @@
 <script lang="javascript" src='ng/prs-user-controller.js'></script>
 <script lang="javascript" src='ng/prs-vendor-controller.js'></script>
 <script lang="javascript" src='ng/prs-purchase-request-controller.js'></script>
+<script lang="javascript" src='ng/prs-purchase-request-line-items-controller.js'></script>
 <script lang="javascript" src='ng/prs-config.js'></script>
 <script lang="javascript" src='js/main.js'></script>
 <link href="css/main.css" rel="stylesheet" type="text/css">
@@ -17,34 +18,29 @@
 <div id="top">
 	<span>This is a line above the menu</span>
 </div>
-<div id="menu">
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#/">Purchase Request System</a>
-	    </div>
-
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#/">HOME <span class="sr-only">(current)</span></a></li>
-	        <li><a href="#/users">USERS</a></li>
-	        <li><a href="#/vendors">VENDORS</a></li>
-	        <li><a href="#/products">PRODUCTS</a></li>
-	        <li><a href="#/purchaseRequests">REQUESTS</a></li>
-	        <li><a href="#/about">ABOUT</a></li>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>	
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Purchase Request System</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#/users">USERS</a></li>
+        <li><a href="#/vendors">VENDORS</a></li>
+        <li><a href="#/products">PRODUCTS</a></li>
+        <li><a href="#/purchaseRequests">REQUESTS</a></li>
+        <li><a href="#/about">ABOUT</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 	<div id="ngview" ng-view></div>
 </body>
 </html>

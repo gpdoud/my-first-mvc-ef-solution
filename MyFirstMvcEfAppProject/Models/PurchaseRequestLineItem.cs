@@ -17,5 +17,11 @@ namespace MyFirstMvcEfAppProject.Models {
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
-    }
+
+		public void UpdateAllProperties(PurchaseRequestLineItem purchaseRequestLineItem) {
+			this.PurchaseRequestId = purchaseRequestLineItem.PurchaseRequestId;
+			this.ProductId = purchaseRequestLineItem.ProductId;
+			this.Quantity = purchaseRequestLineItem.Quantity;
+		}
+	}
 }

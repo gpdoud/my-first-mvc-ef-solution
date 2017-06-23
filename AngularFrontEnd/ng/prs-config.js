@@ -75,6 +75,12 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'PurchaseRequestCtrl',
 			controllerAs: 'ctrl'
 		})
+		// *** PurchaseRequestLineItem Views ***
+		.when('/purchaseRequestLineItems/view/:prId', {
+			templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-view.html',
+			controller: 'PurchaseRequestLineItemCtrl',
+			controllerAs: 'ctrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
