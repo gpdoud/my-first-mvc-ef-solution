@@ -16,14 +16,23 @@ namespace MyFirstMvcEfAppProject.Controllers
     {
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
 
+		private void RecalculatePurchaseRequestTotal(int id) {
+			var prlines = db.PurchaseRequestLineItems.Where(prli => prli.PurchaseRequestId == id).ToList();
+			var total = prlines.Sum(r => r.Quantity * db.Products.Single(p => p.ID == r.ProductId).Price);
+			var pr = db.PurchaseRequests.Single(p => p.ID == id);
+			pr.Total = total;
+			db.SaveChanges();
+		}
+
 		public ActionResult List() {
 			return Json(db.PurchaseRequestLineItems.ToList(), JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult ListByPurchaseRequest(int? purchaseRequestId) {
-			if (purchaseRequestId == null)
+		public ActionResult ListByPurchaseRequest(int? id) {
+			if (id == null)
 				return new EmptyResult();
-			return Json(db.PurchaseRequestLineItems.Where(pr => pr.PurchaseRequestId == purchaseRequestId), JsonRequestBehavior.AllowGet);
+			var items = db.PurchaseRequestLineItems.Where(pr => pr.PurchaseRequestId == id).ToList();
+			return Json(items, JsonRequestBehavior.AllowGet);
 		}
 
 		public ActionResult Get(int? id) {
@@ -41,6 +50,7 @@ namespace MyFirstMvcEfAppProject.Controllers
 			}
 			db.PurchaseRequestLineItems.Remove(purchaseRequestLineItem );
 			db.SaveChanges();
+			RecalculatePurchaseRequestTotal(purchaseRequestLineItem.PurchaseRequestId);
 			return Json(new Msg { Result = "OK", Message = "Successfully deleted" }, JsonRequestBehavior.AllowGet);
 		}
 
@@ -49,6 +59,7 @@ namespace MyFirstMvcEfAppProject.Controllers
 				return new EmptyResult();
 			db.PurchaseRequestLineItems.Add(purchaseRequest);
 			db.SaveChanges();
+			RecalculatePurchaseRequestTotal(purchaseRequest.PurchaseRequestId);
 			return Json(new Msg { Result = "OK", Message = "Successfully added" }, JsonRequestBehavior.AllowGet);
 		}
 
@@ -58,6 +69,7 @@ namespace MyFirstMvcEfAppProject.Controllers
 			PurchaseRequestLineItem purchaseRequest = db.PurchaseRequestLineItems.Find(aPurchaseRequest.ID);
 			purchaseRequest.UpdateAllProperties(aPurchaseRequest);
 			db.SaveChanges();
+			RecalculatePurchaseRequestTotal(purchaseRequest.PurchaseRequestId);
 			return Json(new Msg { Result = "OK", Message = "Successfully updated" }, JsonRequestBehavior.AllowGet);
 		}
 		// GET: PurchaseRequestLineItems

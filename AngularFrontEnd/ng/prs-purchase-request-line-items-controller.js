@@ -1,12 +1,15 @@
 angular.module("PrsApp")
 	.controller("PurchaseRequestLineItemCtrl", PurchaseRequestLineItemCtrl);
 
-PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location"];
+PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location", "$route", "PurchaseRequestSvc"];
 
-function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
+function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, PurchaseRequestSvc) {
 	var self = this;
 	self.SelectedPurchaseRequestLineItemId = $routeParams.id;
 	self.SelectedPurchaseRequestId = $routeParams.prId;
+	if(typeof $routeParams.prId != 'undefined') {
+		PurchaseRequestSvc.SetPurchaseRequestId(self.SelectedPurchaseRequestId);
+	}
 
 	self.PageTitle = "PurchaseRequestLineItems";
 
@@ -27,10 +30,10 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
 				}
 			)
 	}
-	//self.GetProducts();
+	self.GetProducts();
 
 	self.GetPurchaseRequest = function(id) {
-		if(id == undefined)
+		if(typeof id == 'undefined')
 			return;
 		$http.get("http://localhost:62008/PurchaseRequests/Get/"+id.toString())	
 		// $http.get("http://localhost:62008/api/PurchaseRequests/"+id.toString())	
@@ -52,23 +55,25 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
 	self.GetPurchaseRequest(self.SelectedPurchaseRequestId);	
 
 	self.GetPurchaseRequestLineItems = function(prId) {
-		$http.get("http://localhost:62008/PurchaseRequestLineItems/List")
+		var action = (prId == undefined) ? "List" : "ListByPurchaseRequest/" + prId.toString();
+		$http.get("http://localhost:62008/PurchaseRequestLineItems/" + action)
 		// $http.get("http://localhost:62008/api/PurchaseRequests")
 			.then(
 				// if successful
 				function(resp) {
 					console.log("[LIST] SUCCESS!", resp);
-					if(prId == undefined) {
-						self.PurchaseRequestLineItems = resp.data;
-					} else {
-						self.PurchaseRequestLineItems = [];
-						for(var idx in resp.data) {
-							var prItem = resp.data[idx];
-							if(prItem.PurchaseRequestId == prId) {
-								self.PurchaseRequestLineItems.push(prItem);
-							}
-						}
-					}
+					self.PurchaseRequestLineItems = resp.data;
+					// if(prId == undefined) {
+					// self.PurchaseRequestLineItems = resp.data;
+					// } else {
+					// 	self.PurchaseRequestLineItems = [];
+					// 	for(var idx in resp.data) {
+					// 		var prItem = resp.data[idx];
+					// 		if(prItem.PurchaseRequestId == prId) {
+					// 			self.PurchaseRequestLineItems.push(prItem);
+					// 		}
+					// 	}
+					// }
 				},
 				// if error
 				function(err) {
@@ -106,7 +111,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
 				// if successful
 				function(resp) {
 					console.log("POST SUCCESS!", resp);
-					$location.path("/purchaseRequestLineItems")
+					$location.path("/purchaseRequestLineItems/view/" + PurchaseRequestSvc.GetPurchaseRequestId());
 				},
 				// if error
 				function(err) {
@@ -123,7 +128,9 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
 			// if successful
 			function(resp) {
 				console.log("REMOVE SUCCESS!", resp);
-				$location.path("/purchaseRequestLineItems")
+				$location.path("/purchaseRequestLineItems/view/" + self.SelectedPurchaseRequestId);
+				// location.reload();
+				$route.reload();
 			},
 			// if error
 			function(err) {
@@ -134,13 +141,14 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location) {
 	}
 
 	self.Add = function(PurchaseRequestLineItem) {
+		PurchaseRequestLineItem.PurchaseRequestId = self.SelectedPurchaseRequestId;
 		$http.post("http://localhost:62008/PurchaseRequestLineItems/add", PurchaseRequestLineItem)
 		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
 		.then(
 			// if successful
 			function(resp) {
 				console.log("ADD SUCCESS!", resp);
-				$location.path("/purchaseRequestLineItems")
+				$location.path("/purchaseRequestLineItems/view/" + self.SelectedPurchaseRequestId);
 			},
 			// if error
 			function(err) {

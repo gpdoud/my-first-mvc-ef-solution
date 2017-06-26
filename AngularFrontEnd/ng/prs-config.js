@@ -54,6 +54,27 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'VendorCtrl',
 			controllerAs: 'ctrl'
 		})
+		// *** Product Views ***
+		.when('/products', {
+			templateUrl: 'views/products/products-view.html',
+			controller: 'ProductCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/products/detail/:id', {
+			templateUrl: 'views/products/products-detail-view.html',
+			controller: 'ProductCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/products/edit/:id', {
+			templateUrl: 'views/products/products-edit-view.html',
+			controller: 'ProductCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/products/add', {
+			templateUrl: 'views/products/products-create-view.html',
+			controller: 'ProductCtrl',
+			controllerAs: 'ctrl'
+		})
 		// *** PurchaseRequest Views ***
 		.when('/purchaseRequests', {
 			templateUrl: 'views/purchaseRequests/purchaseRequests-view.html',
@@ -76,8 +97,23 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controllerAs: 'ctrl'
 		})
 		// *** PurchaseRequestLineItem Views ***
-		.when('/purchaseRequestLineItems/view/:prId', {
-			templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-view.html',
+		.when('/purchaseRequestLineItems/view/:prId', 
+			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-view.html',
+			controller: 'PurchaseRequestLineItemCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/purchaseRequestLineItems/detail/:id', 
+			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-detail-view.html',
+			controller: 'PurchaseRequestLineItemCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/purchaseRequestLineItems/edit/:id', 
+			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-edit-view.html',
+			controller: 'PurchaseRequestLineItemCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/purchaseRequestLineItems/add/:prId', 
+			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-create-view.html',
 			controller: 'PurchaseRequestLineItemCtrl',
 			controllerAs: 'ctrl'
 		})

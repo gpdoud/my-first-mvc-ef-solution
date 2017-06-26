@@ -1,0 +1,46 @@
+<div>
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+	<div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<span class="DetailHeading">Name</span>
+					</td>
+					<td>
+						<span ng-bind="ctrl.SelectedProduct.Name"></span> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">VendorPartNumber</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedProduct.VendorPartNumber"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Price</span>
+					</td>
+					<td>
+						<span ng-bind="ctrl.SelectedProduct.Price"></span></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">Unit</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedProduct.Unit"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="DetailHeading">PhotoPath</span>
+					</td>
+					<td><span ng-bind="ctrl.SelectedProduct.PhotoPath"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	<span><a href="#/products/edit/{{ctrl.SelectedProduct.ID}}">Edit</a></span> |
+		  	<button ng-click="ctrl.Remove(ctrl.SelectedProduct.ID)">Delete</button>
+
+	</div>
+</div>

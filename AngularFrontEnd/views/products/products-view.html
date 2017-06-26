@@ -1,0 +1,44 @@
+<div>
+	<div>
+		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
+		<span> - </span>
+		<span id="PageAddLink"><a href="#/products/add">Create New</a></span>	
+		<span> - </span>
+		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
+		<span> - </span>
+		<label>Sort: 
+			<select ng-model="ctrl.SortProperty">
+				<option ng-repeat="field in ['','Name','VendorPartNumber','Price','Unit','Vendor.Name']">{{field}}</option>
+			</select>
+		</label>
+		<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>VendorPartNumber</td>
+					<td>Price</td>
+					<td>Unit</td>
+					<td>PhotoPath</td>
+					<td>Vendor</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="product in ctrl.Products | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
+					<td><span ng-bind="product.Name"></span></td>
+					<td><span ng-bind="product.VendorPartNumber"></span></td>
+					<td><span ng-bind="product.Price"></span></td>
+					<td><span ng-bind="product.Unit"></span></td>
+					<td><span ng-bind="product.PhotoPath"></span></td>
+					<td><span ng-bind="product.Vendor.Name"></span></td>
+					<td>
+						<span><a href="#/products/detail/{{product.ID}}">Detail</a></span> |
+						<span><a href="#/products/edit/{{product.ID}}">Edit</a></span> |
+						<span><a href="#/products/remove/{{product.ID}}">Delete</a></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

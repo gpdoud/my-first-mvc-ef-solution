@@ -2,7 +2,8 @@
 	<div>
 		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
 		<span> - </span>
-		<span id="PageAddLink"><a href="#/purchaseRequestLineItems/add">Create New</a></span>	
+		<span id="PageAddLink">
+		<a href="#/purchaseRequestLineItems/add/{{ctrl.SelectedPurchaseRequest.ID}}">Create New</a></span>	
 		<span> - </span>
 		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
 		<span> - </span>
@@ -32,12 +33,12 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="purchaseRequestLineItem in ctrl.PurchaseRequestLineItems | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
-					<td><span ng-bind="purchaseRequestLineItem.ProductID"></span></td>
+					<td><span ng-bind="purchaseRequestLineItem.Product.Name"></span></td>
 					<td><span ng-bind="purchaseRequestLineItem.Quantity"></span></td>
 					<td>
-						<span><a href="#/purchaseRequestLineItems/detail/{{purchaseRequest.ID}}">Detail</a></span> |
-						<span><a href="#/purchaseRequestLineItems/edit/{{purchaseRequest.ID}}">Edit</a></span> |
-						<span><a href="#/purchaseRequestLineItems/remove/{{purchaseRequest.ID}}">Delete</a></span>
+						<span><a href="#/purchaseRequestLineItems/detail/{{purchaseRequestLineItem.ID}}">Detail</a></span> |
+						<span><a href="#/purchaseRequestLineItems/edit/{{purchaseRequestLineItem.ID}}">Edit</a></span> |
+						<button ng-click="ctrl.Remove(purchaseRequestLineItem.ID)">Delete</button>
 					</td>
 				</tr>
 			</tbody>

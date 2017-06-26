@@ -1,0 +1,50 @@
+<div style="width:60%;margin:10px auto;">
+	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Add</span></div>
+	<div>
+		<div class="form-group row">
+			<label for="product-product-name" class="col-md-3 col-form-label">Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewProduct.Name" id="product-product-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="product-VendorPartNumber" class="col-md-3 col-form-label">VendorPartNumber</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="test" ng-model="ctrl.NewProduct.VendorPartNumber" id="product-VendorPartNumber">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="product-price" class="col-md-3 col-form-label">Price</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewProduct.Price" id="product-price">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="product-unit" class="col-md-3 col-form-label">Unit</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewProduct.Unit" id="product-Unit">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="product-photopath" class="col-md-3 col-form-label">PhotoPath</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewProduct.PhotoPath" id="product-photopath">
+			</div>
+	  	</div>
+
+
+		<div class="form-group row">
+			<label for="product-vendor" class="col-md-3 col-form-label">Vendor</label>
+			 <div class="col-md-9">
+			 	<select class="form-control" ng-model="ctrl.NewProduct.VendorId" id="product-vendor">
+			 		<option ng-repeat="vendor in ctrl.Vendors" value={{vendor.ID}}>{{vendor.Name}}</option>
+			 	</select>
+			</div>
+	  	</div>
+	  	<button ng-click="ctrl.Add(ctrl.NewProduct)">Add</button>
+	</div>
+</div>

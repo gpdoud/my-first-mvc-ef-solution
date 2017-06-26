@@ -1,9 +1,9 @@
 angular.module("PrsApp")
 	.controller("UserCtrl", UserCtrl);
 
-UserCtrl.$inject = ["$http", "$routeParams", "$location"];
+UserCtrl.$inject = ["$http", "$routeParams", "$location", "UserSvc"];
 
-function UserCtrl($http, $routeParams, $location) {
+function UserCtrl($http, $routeParams, $location, UserSvc) {
 	var self = this;
 	self.SelectedUserId = $routeParams.id;
 
@@ -37,6 +37,7 @@ function UserCtrl($http, $routeParams, $location) {
 			)
 	}
 	self.GetUsers();
+	// self.Users = UserSvc.GetUsers();
 
 	self.GetUser = function(id) {
 		if(id == undefined)

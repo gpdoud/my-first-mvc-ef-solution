@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyFirstMvcEfAppProject.Models;
+using Api = System.Web.Http;
 
 namespace MyFirstMvcEfAppProject.Controllers
 {
@@ -14,8 +15,47 @@ namespace MyFirstMvcEfAppProject.Controllers
     {
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
 
-        // GET: Products
-        public ActionResult Index()
+		public ActionResult List() {
+			return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Get(int? id) {
+			return Json(db.Products.Find(id), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Remove(int? id) {
+			if (id == null) {
+				var rc = new Msg { Result = "Failed", Message = "No Id supplied" };
+				return Json(rc, JsonRequestBehavior.AllowGet);
+			}
+			Product product = db.Products.Find(id);
+			if (product == null) {
+				return Json(new Msg { Result = "Failed", Message = $"Vendor not found for id {id}" }, JsonRequestBehavior.AllowGet);
+			}
+			db.Products.Remove(product);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully deleted" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Add([Api.FromBody] Product product) {
+			if (product.Name == null)
+				return new EmptyResult();
+			db.Products.Add(product);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully added" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Change([Api.FromBody] Product aProduct) {
+			if (aProduct.ID == 0)
+				return Json(new Msg { Result = "Failure", Message = "aVendor is empty" }, JsonRequestBehavior.AllowGet);
+			Product product = db.Products.Find(aProduct.ID);
+			product.UpdateAllProperties(aProduct);
+			db.SaveChanges();
+			return Json(new Msg { Result = "OK", Message = "Successfully updated" }, JsonRequestBehavior.AllowGet);
+		}
+
+		// GET: Products
+		public ActionResult Index()
         {
             return View(db.Products.ToList());
         }

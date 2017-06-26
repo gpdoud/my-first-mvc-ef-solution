@@ -26,5 +26,15 @@ namespace MyFirstMvcEfAppProject.Models {
         public int VendorId { get; set; }
         public virtual Vendor Vendor { get; set; }
 
+		public void UpdateAllProperties(Product product) {
+			this.ID = product.ID;
+			this.Name = product.Name;
+			this.VendorPartNumber = product.VendorPartNumber;
+			this.Price = product.Price;
+			this.Unit = product.Unit;
+			this.PhotoPath = product.PhotoPath;
+			this.VendorId = product.VendorId;
+		}
+
     }
 }

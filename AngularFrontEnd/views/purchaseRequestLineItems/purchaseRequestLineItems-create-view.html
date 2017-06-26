@@ -1,72 +1,23 @@
 <div style="width:60%;margin:10px auto;">
 	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Add</span></div>
 	<div>
-	<!-- copy goes here -->
+	
 		<div class="form-group row">
-			<label for="purchaseRequest-id" class="col-md-3 col-form-label">ID</label>
+			<label for="purchaseRequestLineItem-product" class="col-md-3 col-form-label">Product</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.NewPurchaseRequest.ID" id="purchaseRequest-id">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-description" class="col-md-3 col-form-label">Description</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.Description" id="purchaseRequest-description">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-justification" class="col-md-3 col-form-label">Justification</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.Justification" id="purchaseRequest-justification">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-dateneeded" class="col-md-3 col-form-label">DateNeeded</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="Address" ng-model="ctrl.NewPurchaseRequest.DateNeeded" id="purchaseRequest-dateneeded">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-deliverymode" class="col-md-3 col-form-label">DeliveryMode</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.DeliveryMode" id="purchaseRequest-deliverymode">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-docsattached" class="col-md-3 col-form-label">DocsAttached</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.DocsAttached" id="purchaseRequest-docsattached">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-status" class="col-md-3 col-form-label">Status</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.Status" id="purchaseRequest-status">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-total" class="col-md-3 col-form-label">Total</label>
-			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequest.Total" id="purchaseRequest-total">
-			</div>
-	  	</div>
-
-		<div class="form-group row">
-			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
-			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.NewPurchaseRequest.UserId" id="purchaseRequest-user">
-			 		<option ng-repeat="user in ctrl.Users" value={{user.ID}}>{{user.LastName}}</option>
+			 	<select class="form-control" ng-model="ctrl.NewPurchaseRequestLineItem.ProductId" id="purchaseRequestLineItem-product">
+			 		<option ng-repeat="product in ctrl.Products" value="{{product.ID}}">{{product.Name}}</option>
 			 	</select>
 			</div>
 	  	</div>
 
-	  	<button ng-click="ctrl.Add(ctrl.NewPurchaseRequest)">Add</button>
+		<div class="form-group row">
+			<label for="purchaseRequestLineItem-quantity" class="col-md-3 col-form-label">Quantity</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.NewPurchaseRequestLineItem.Quantity" id="purchaseRequest-quantity">
+			</div>
+	  	</div>
+
+	  	<button ng-click="ctrl.Add(ctrl.NewPurchaseRequestLineItem)">Add</button>
 	</div>
 </div>
