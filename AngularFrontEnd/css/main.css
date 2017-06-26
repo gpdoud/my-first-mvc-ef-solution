@@ -8,7 +8,7 @@ thead {
 }
 #ngview {
 	padding: 0 10px;
-	margin-top: 4.5em;
+	margin-top: 5em;
 }
 #top {
 	display: none;
@@ -17,6 +17,7 @@ thead {
 	/* The title on every page */
 	font-size: 1.5em;
 	font-weight: bolder;
+	padding-bottom: 1em;
 }
 #PageAddLink {
 	font-weight: bolder;

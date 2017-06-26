@@ -34,7 +34,7 @@
 					<td><span ng-bind="purchaseRequest.DeliveryMode"></span></td>
 					<td><span ng-bind="purchaseRequest.DocsAttached"></span></td>
 					<td><span ng-bind="purchaseRequest.Status"></span></td>
-					<td><span ng-bind="purchaseRequest.Total"></span></td>
+					<td><span ng-bind="purchaseRequest.Total | currency"></span></td>
 					<td><span ng-bind="purchaseRequest.User.LastName"></span></td>
 					<td>
 						<span><a href="#/purchaseRequests/detail/{{purchaseRequest.ID}}">Detail</a></span> |
