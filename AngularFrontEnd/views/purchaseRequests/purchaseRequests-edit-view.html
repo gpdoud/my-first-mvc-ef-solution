@@ -60,7 +60,7 @@
 		<div class="form-group row">
 			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.LastName for user in ctrl.Users track by user.ID" ng-model="ctrl.SelectedPurchaseRequest.UserId">
+			 	<select class="form-control" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
 			 	</select>
 			</div>
 	  	</div>

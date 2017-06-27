@@ -35,15 +35,17 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	self.GetPurchaseRequest = function(id) {
 		if(typeof id == 'undefined')
 			return;
-		$http.get("http://localhost:62008/PurchaseRequests/Get/"+id.toString())	
+		$http.get("http://localhost:62008/PurchaseRequests/Get/"+id)	
 		// $http.get("http://localhost:62008/api/PurchaseRequests/"+id.toString())	
 			.then(
 				// if successful
 				function(resp) {
 					console.log("[GET] SUCCESS!", resp);
 					self.SelectedPurchaseRequest = resp.data;
-					self.SelectedPurchaseRequest.DateNeeded 
-						= Number(self.SelectedPurchaseRequest.DateNeeded.replace('/Date(','').replace(')/',''))
+					if(self.SelectedPurchaseRequest != "") {
+						self.SelectedPurchaseRequest.DateNeeded 
+							= Number(self.SelectedPurchaseRequest.DateNeeded.replace('/Date(','').replace(')/',''))
+					}
 				},
 				// if error
 				function(err) {

@@ -17,11 +17,13 @@ namespace MyFirstMvcEfAppProject.Controllers
         private MyFirstMvcEfAppProjectContext db = new MyFirstMvcEfAppProjectContext();
 
 		public ActionResult List() {
-			return Json(db.PurchaseRequests.ToList(), JsonRequestBehavior.AllowGet);
+			//return Json(db.PurchaseRequests.ToList(), JsonRequestBehavior.AllowGet);
+			return new JsonNetResult { Data = db.PurchaseRequests.ToList() };
 		}
 
 		public ActionResult Get(int? id) {
-			return Json(db.PurchaseRequests.Find(id), JsonRequestBehavior.AllowGet);
+			//return Json(db.PurchaseRequests.Find(id), JsonRequestBehavior.AllowGet);
+			return new JsonNetResult { Data = db.PurchaseRequests.Find(id) };
 		}
 
 		public ActionResult Remove(int? id) {

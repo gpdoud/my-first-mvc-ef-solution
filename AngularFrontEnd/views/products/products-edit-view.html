@@ -47,8 +47,7 @@
 		<div class="form-group row">
 			<label for="product-vendor" class="col-md-3 col-form-label">Vendor</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.SelectedProduct.VendorId" id="product-vendor">
-			 		<option ng-repeat="vendor in ctrl.Vendors" value={{vendor.ID}}>{{vendor.Name}}</option>
+			 	<select class="form-control" ng-model="ctrl.SelectedProduct.VendorId" id="product-vendor"  ng-options="vendor.ID as vendor.Name for vendor in ctrl.Vendors">
 			 	</select>
 			</div>
 	  	</div>

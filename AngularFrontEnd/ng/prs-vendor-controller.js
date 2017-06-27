@@ -33,8 +33,9 @@ function VendorCtrl($http, $routeParams, $location, VendorSvc) {
 	self.GetVendor = function(id) {
 		if(id == undefined)
 			return;
-		$http.get("http://localhost:62008/Vendors/Get/"+id.toString())	
-		// $http.get("http://localhost:62008/api/Vendors/"+id.toString())	
+		// $http.get("http://localhost:62008/Vendors/Get/"+id.toString())	
+		// $http.get("http://localhost:62008/api/Vendors/"+id.toString())
+		VendorSvc.Get(id)	
 			.then(
 				// if successful
 				function(resp) {
@@ -50,9 +51,10 @@ function VendorCtrl($http, $routeParams, $location, VendorSvc) {
 	}
 	self.GetVendor(self.SelectedVendorId);
 
-	self.Update = function(Vendor) {
-		$http.post("http://localhost:62008/Vendors/Change", Vendor)
+	self.Update = function(vendor) {
+		// $http.post("http://localhost:62008/Vendors/Change", Vendor)
 		// $http.post("http://localhost:62008/api/Vendors", Vendor)
+		VendorSvc.Change(vendor)
 			.then(
 				// if successful
 				function(resp) {
@@ -68,8 +70,9 @@ function VendorCtrl($http, $routeParams, $location, VendorSvc) {
 	}
 
 	self.Remove = function(id) {
-		$http.delete("http://localhost:62008/Vendors/Remove/" + id.toString())
+		// $http.delete("http://localhost:62008/Vendors/Remove/" + id.toString())
 		// $http.delete("http://localhost:62008/api/Vendors/" + id.toString())
+		VendorSvc.Remove(id)
 		.then(
 			// if successful
 			function(resp) {
@@ -84,9 +87,10 @@ function VendorCtrl($http, $routeParams, $location, VendorSvc) {
 		)
 	}
 
-	self.Add = function(Vendor) {
-		$http.post("http://localhost:62008/vendors/add", Vendor)
+	self.Add = function(vendor) {
+		// $http.post("http://localhost:62008/vendors/add", Vendor)
 		// $http.delete("http://localhost:62008/api/Vendors/" + id.toString())
+		VendorSvc.Add(vendor)
 		.then(
 			// if successful
 			function(resp) {

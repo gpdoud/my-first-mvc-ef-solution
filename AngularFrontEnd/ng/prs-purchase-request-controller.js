@@ -1,15 +1,27 @@
 angular.module("PrsApp")
 	.controller("PurchaseRequestCtrl", PurchaseRequestCtrl);
 
-PurchaseRequestCtrl.$inject = ["$http", "$routeParams", "$location"];
+PurchaseRequestCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc"];
 
-function PurchaseRequestCtrl($http, $routeParams, $location) {
+function PurchaseRequestCtrl($http, $routeParams, $location, SystemSvc) {
 	var self = this;
 	self.SelectedPurchaseRequestId = $routeParams.id;
+	self.PrStatus = {
+		New : "NEW",
+		Review: "REVIEW",
+		Approved: "APPROVED",
+		Rejected: "REJECTED"
+	};
+	self.NewPurchaseRequest = {
+		Status: self.PrStatus.New,
+		DateNeeded: SystemSvc.ConvertToJsonDate(new Date()),
+		DocsAttached: false,
+		Total: 0.00,
+		DeliveryMode: 'USPS'
+	};
+
 
 	self.PageTitle = "PurchaseRequest";
-
-	self.PurchaseRequests = [];
 
 	self.GetUsers = function() {
 		$http.get("http://localhost:62008/Users/List")
@@ -38,7 +50,10 @@ function PurchaseRequestCtrl($http, $routeParams, $location) {
 					self.PurchaseRequests = resp.data;
 					for(var idx in self.PurchaseRequests) {
 						var pr = self.PurchaseRequests[idx];
-						pr.DateNeeded = Number(pr.DateNeeded.replace('/Date(','').replace(')/',''))
+						// pr.DateNeeded = Number(pr.DateNeeded.replace('/Date(','').replace(')/',''))
+						// pr.DateNeeded = new Date(pr.DateNeeded);
+						// pr.DateNeeded = $filter('date')(pr.DateNeeded, "MM/dd/yyyy");
+						pr.DateNeeded = SystemSvc.ConvertToJsonDate(pr.DateNeeded);
 					}
 				},
 				// if error
@@ -60,8 +75,11 @@ function PurchaseRequestCtrl($http, $routeParams, $location) {
 				function(resp) {
 					console.log("[GET] SUCCESS!", resp);
 					self.SelectedPurchaseRequest = resp.data;
-					self.SelectedPurchaseRequest.DateNeeded 
-						= Number(self.SelectedPurchaseRequest.DateNeeded.replace('/Date(','').replace(')/',''))
+					var pr = self.SelectedPurchaseRequest;
+						// = Number(self.SelectedPurchaseRequest.DateNeeded.replace('/Date(','').replace(')/',''))
+						// pr.DateNeeded = new Date(pr.DateNeeded);
+						// pr.DateNeeded = $filter('date')(pr.DateNeeded, "MM/dd/yyyy");				},
+					pr.DateNeeded = SystemSvc.ConvertToJsonDate(pr.DateNeeded);
 				},
 				// if error
 				function(err) {
@@ -107,6 +125,7 @@ function PurchaseRequestCtrl($http, $routeParams, $location) {
 	}
 
 	self.Add = function(PurchaseRequest) {
+		PurchaseRequest.Status = self.PrStatus.New;
 		$http.post("http://localhost:62008/PurchaseRequests/add", PurchaseRequest)
 		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
 		.then(
