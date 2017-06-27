@@ -11,4 +11,13 @@ function UserSvc($http) {
 	self.GetUser = function(id) {
 		return $http.get("http://localhost:62008/Users/Get/"+id);
 	}
+	self.UpdateUser = function(user) {
+		return $http.post("http://localhost:62008/Users/Change", user);
+	}
+	self.RemoveUser = function(id) {
+		return $http.delete("http://localhost:62008/Users/Remove/" + id);
+	}
+	self.AddUser = function(user) {
+		return $http.post("http://localhost:62008/Users/Add", user);
+	}
 };
