@@ -1,9 +1,9 @@
 angular.module("PrsApp")
 	.controller("VendorCtrl", VendorCtrl);
 
-VendorCtrl.$inject = ["$http", "$routeParams", "$location"];
+VendorCtrl.$inject = ["$http", "$routeParams", "$location", "VendorSvc"];
 
-function VendorCtrl($http, $routeParams, $location) {
+function VendorCtrl($http, $routeParams, $location, VendorSvc) {
 	var self = this;
 	self.SelectedVendorId = $routeParams.id;
 
@@ -12,8 +12,9 @@ function VendorCtrl($http, $routeParams, $location) {
 	self.Vendors = [];
 
 	self.GetVendors = function() {
-		$http.get("http://localhost:62008/Vendors/List")
+		// $http.get("http://localhost:62008/Vendors/List")
 		// $http.get("http://localhost:62008/api/Vendors")
+		VendorSvc.List()
 			.then(
 				// if successful
 				function(resp) {

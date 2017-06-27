@@ -5,7 +5,7 @@ UserCtrl.$inject = ["$http", "$routeParams", "$location", "UserSvc"];
 
 function UserCtrl($http, $routeParams, $location, UserSvc) {
 	var self = this;
-	UserSvc.GetUsers()
+	UserSvc.List()
 		.then(
 			function(resp) {
 				self.Users = resp.data;
@@ -29,7 +29,7 @@ function UserCtrl($http, $routeParams, $location, UserSvc) {
 		self.ShowPassword(!self.DisplayPassword);
 	}
 
-	UserSvc.GetUser(self.SelectedUserId)
+	UserSvc.Get(self.SelectedUserId)
 		.then(
 			// if successful
 			function(resp) {
@@ -44,7 +44,7 @@ function UserCtrl($http, $routeParams, $location, UserSvc) {
 		);
 
 	self.Update = function(user) {
-		UserSvc.UpdateUser(user)
+		UserSvc.Change(user)
 			.then(
 				// if successful
 				function(resp) {
@@ -60,7 +60,7 @@ function UserCtrl($http, $routeParams, $location, UserSvc) {
 	}
 
 	self.Remove = function(id) {
-		UserSvc.RemoveUser(id)
+		UserSvc.Remove(id)
 			.then(
 				// if successful
 				function(resp) {
@@ -76,7 +76,7 @@ function UserCtrl($http, $routeParams, $location, UserSvc) {
 	}
 
 	self.Add = function(user) {
-		UserSvc.AddUser(user)
+		UserSvc.Add(user)
 			.then(
 				// if successful
 				function(resp) {
