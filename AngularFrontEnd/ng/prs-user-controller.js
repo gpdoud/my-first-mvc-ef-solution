@@ -5,6 +5,17 @@ UserCtrl.$inject = ["$http", "$routeParams", "$location", "UserSvc"];
 
 function UserCtrl($http, $routeParams, $location, UserSvc) {
 	var self = this;
+	UserSvc.GetUsers()
+		.then(
+			function(resp) {
+				self.Users = resp.data;
+				console.log("SVC Success!");
+			},
+			function(err) {
+				self.Users = [];
+				console.log("SVC Failure.");
+			}
+		);
 	self.SelectedUserId = $routeParams.id;
 
 	self.PageTitle = "User";
@@ -18,46 +29,55 @@ function UserCtrl($http, $routeParams, $location, UserSvc) {
 		self.ShowPassword(!self.DisplayPassword);
 	}
 
-	self.Users = [];
+	// self.GetUsers = function() {
+	// 	$http.get("http://localhost:62008/Users/List")
+	// 	// $http.get("http://localhost:62008/api/Users")
+	// 		.then(
+	// 			// if successful
+	// 			function(resp) {
+	// 				console.log("[LIST] SUCCESS!", resp);
+	// 				self.Users = resp.data;
+	// 			},
+	// 			// if error
+	// 			function(err) {
+	// 				console.log("[LIST] ERROR:", err);
 
-	self.GetUsers = function() {
-		$http.get("http://localhost:62008/Users/List")
-		// $http.get("http://localhost:62008/api/Users")
-			.then(
-				// if successful
-				function(resp) {
-					console.log("[LIST] SUCCESS!", resp);
-					self.Users = resp.data;
-				},
-				// if error
-				function(err) {
-					console.log("[LIST] ERROR:", err);
+	// 			}
+	// 		)
+	// }
+	// self.GetUsers();
+	UserSvc.GetUser(self.SelectedUserId)
+		.then(
+			// if successful
+			function(resp) {
+				console.log("[GET] SUCCESS!", resp);
+				self.SelectedUser = resp.data;
+			},
+			// if error
+			function(err) {
+				console.log("[GET] ERROR:", err);
 
-				}
-			)
-	}
-	self.GetUsers();
-	// self.Users = UserSvc.GetUsers();
+			}
+		);
+	// self.GetUser = function(id) {
+	// 	if(id == undefined)
+	// 		return;
+	// 	$http.get("http://localhost:62008/Users/Get/"+id.toString())	
+	// 	// $http.get("http://localhost:62008/api/Users/"+id.toString())	
+	// 		.then(
+	// 			// if successful
+	// 			function(resp) {
+	// 				console.log("[GET] SUCCESS!", resp);
+	// 				self.SelectedUser = resp.data;
+	// 			},
+	// 			// if error
+	// 			function(err) {
+	// 				console.log("[GET] ERROR:", err);
 
-	self.GetUser = function(id) {
-		if(id == undefined)
-			return;
-		$http.get("http://localhost:62008/Users/Get/"+id.toString())	
-		// $http.get("http://localhost:62008/api/Users/"+id.toString())	
-			.then(
-				// if successful
-				function(resp) {
-					console.log("[GET] SUCCESS!", resp);
-					self.SelectedUser = resp.data;
-				},
-				// if error
-				function(err) {
-					console.log("[GET] ERROR:", err);
-
-				}
-			)
-	}
-	self.GetUser(self.SelectedUserId);
+	// 			}
+	// 		)
+	// }
+	// self.GetUser(self.SelectedUserId);
 
 	self.Update = function(user) {
 		$http.post("http://localhost:62008/Users/Change", user)
