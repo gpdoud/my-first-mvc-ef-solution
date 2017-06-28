@@ -5,6 +5,7 @@ SystemSvc.$inject = ["$filter"];
 
 function SystemSvc($filter) {
 	var self = this;
+	self.about = "System Service";
 
 	self.AjaxUrl = "http://localhost:62008";
 
