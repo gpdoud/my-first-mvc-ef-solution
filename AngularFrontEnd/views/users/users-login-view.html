@@ -1,0 +1,34 @@
+<div style="width:60%;margin:10px auto;">
+	<div id="PageTitle"><span><span ng-bind="ctrl.PageTitle"></span> Login</span></div>
+	<div>
+
+		<div class="form-group row">
+			<label for="user-user-name" class="col-md-3 col-form-label">User Name</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="text" ng-model="ctrl.Login.UserName" id="user-user-name">
+			</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="user-password" class="col-md-3 col-form-label">Password</label>
+			 <div class="col-md-9">
+			 	<input class="form-control" type="password" ng-model="ctrl.Login.Password" id="user-password">
+			</div>
+	  	</div>
+
+	  	<div class="form-group row">
+	  		<label for="login-button" class="col-md-3 col-form-label"></label>
+	  		<div class="col-md-9">
+	  			<button class="btn btn-primary form-control" ng-click="ctrl.ValidateUser(ctrl.Login.UserName, ctrl.Login.Password)">Login</button>
+	  		</div>
+	  	</div>
+
+		<div class="form-group row">
+			<label for="message" class="col-md-3 col-form-label">Message</label>
+			 <div class="col-md-9">
+			 	<label class="col-form-label" ng-bind="ctrl.Login.Message" id="message">
+			</div>
+	  	</div>
+
+	</div>
+</div>
