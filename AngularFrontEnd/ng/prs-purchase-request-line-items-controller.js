@@ -1,10 +1,13 @@
 angular.module("PrsApp")
 	.controller("PurchaseRequestLineItemCtrl", PurchaseRequestLineItemCtrl);
 
-PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location", "$route", "PurchaseRequestSvc"];
+PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location", "$route", "PurchaseRequestSvc", "SystemSvc", "AuthenticationSvc"];
 
-function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, PurchaseRequestSvc) {
+function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, PurchaseRequestSvc, SystemSvc, AuthenticationSvc) {
 	var self = this;
+	AuthenticationSvc.VerifyUserLogin();
+	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
+	
 	self.SelectedPurchaseRequestLineItemId = $routeParams.id;
 	self.SelectedPurchaseRequestId = $routeParams.prId;
 	if(typeof $routeParams.prId != 'undefined') {

@@ -1,14 +1,13 @@
 angular.module("PrsApp")
 	.controller("VendorCtrl", VendorCtrl);
 
-VendorCtrl.$inject = ["$http", "$routeParams", "$location", "VendorSvc", "SystemSvc"];
+VendorCtrl.$inject = ["$http", "$routeParams", "$location", "VendorSvc", "SystemSvc", "AuthenticationSvc"];
 
-function VendorCtrl($http, $routeParams, $location, VendorSvc, SystemSvc) {
+function VendorCtrl($http, $routeParams, $location, VendorSvc, SystemSvc, AuthenticationSvc) {
 	var self = this;
 
-	if(!SystemSvc.IsUserLoggedIn()) {
-		$location.path('/login');
-	}
+	AuthenticationSvc.VerifyUserLogin();
+	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
 
 	self.SelectedVendorId = $routeParams.id;
 

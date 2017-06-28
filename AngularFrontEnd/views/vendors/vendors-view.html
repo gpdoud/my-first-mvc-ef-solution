@@ -1,16 +1,13 @@
 <div>
 	<div>
 		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
-		<span> - </span>
-		<span id="PageAddLink"><a href="#/vendors/add">Create New</a></span>	
-		<span> - </span>
-		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
-		<span> - </span>
-		<label>Sort: 
+		<span ng-if="ctrl.IsUserAdmin" id="PageAddLink"> - <a href="#/vendors/add">Create New</a></span>	
+		<span> - <label>Search: <input ng-model="ctrl.SearchCriteria"></label></span>
+		<span> - <label>Sort: 
 			<select ng-model="ctrl.SortProperty">
 				<option ng-repeat="field in ['','Code','Name','Address','City','State','Zip','Phone','Email']">{{field}}</option>
 			</select>
-		</label>
+		</label></span>
 		<div>
 		<table class="table">
 			<thead>
@@ -35,9 +32,9 @@
 					<td><span ng-bind="vendor.Email"></span></td>
 					<td><span ng-bind="vendor.IsRecommended"></span></td>
 					<td>
-						<span><a href="#/vendors/detail/{{vendor.ID}}">Detail</a></span> |
-						<span><a href="#/vendors/edit/{{vendor.ID}}">Edit</a></span> |
-						<span><a href="#/vendors/remove/{{vendor.ID}}">Delete</a></span>
+						<span><a href="#/vendors/detail/{{vendor.ID}}">Detail</a></span>
+						<span ng-if="ctrl.IsUserAdmin"> | <a href="#/vendors/edit/{{vendor.ID}}">Edit</a></span>
+						<span ng-if="ctrl.IsUserAdmin"> | <a href="#/vendors/remove/{{vendor.ID}}">Delete</a></span>
 					</td>
 				</tr>
 			</tbody>

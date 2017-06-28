@@ -1,10 +1,13 @@
 angular.module("PrsApp")
 	.controller("ProductCtrl", ProductCtrl);
 
-ProductCtrl.$inject = ["$http", "$routeParams", "$location"];
+ProductCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc", "AuthenticationSvc"];
 
-function ProductCtrl($http, $routeParams, $location) {
+function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSvc) {
 	var self = this;
+	AuthenticationSvc.VerifyUserLogin();
+	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
+
 	self.SelectedProductId = $routeParams.id;
 
 	self.PageTitle = "Product";

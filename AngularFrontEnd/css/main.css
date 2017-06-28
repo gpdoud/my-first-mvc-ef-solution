@@ -10,6 +10,10 @@ thead {
 	padding: 0 10px;
 	margin-top: 5em;
 }
+#nickname {
+    margin-top: 51px;
+    text-align: right;
+}
 #top {
 	display: none;
 }

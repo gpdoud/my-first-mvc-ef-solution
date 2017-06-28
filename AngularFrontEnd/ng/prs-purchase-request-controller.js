@@ -1,10 +1,13 @@
 angular.module("PrsApp")
 	.controller("PurchaseRequestCtrl", PurchaseRequestCtrl);
 
-PurchaseRequestCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc"];
+PurchaseRequestCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc", "AuthenticationSvc"];
 
-function PurchaseRequestCtrl($http, $routeParams, $location, SystemSvc) {
+function PurchaseRequestCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSvc) {
 	var self = this;
+	AuthenticationSvc.VerifyUserLogin();
+	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
+	
 	self.SelectedPurchaseRequestId = $routeParams.id;
 	self.PrStatus = {
 		New : "NEW",

@@ -53,18 +53,8 @@ namespace MyFirstMvcEfAppProject.Controllers
 			if (aUser.ID == 0)
 				return Json(new Msg { Result = "Failure", Message = "aUser is empty" }, JsonRequestBehavior.AllowGet);
 			User user = db.Users.Find(aUser.ID);
-			user.FirstName = aUser.FirstName;
-			user.LastName = aUser.LastName;
-			user.UserName = aUser.UserName;
-			user.Phone = aUser.Phone;
-			user.Email = aUser.Email;
-			user.IsAdmin = aUser.IsAdmin;
-			user.IsReviewer = aUser.IsReviewer;
-			try {
-				db.SaveChanges();
-			} catch (Exception ex) {
-				var e = ex;
-			}
+			user.UpdateAllProperties(aUser);
+			db.SaveChanges();
 			return Json(new Msg { Result = "OK", Message = "Successfully updated" }, JsonRequestBehavior.AllowGet);
 		}
 

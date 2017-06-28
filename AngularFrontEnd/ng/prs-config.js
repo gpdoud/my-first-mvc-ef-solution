@@ -33,9 +33,10 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'UserCtrl',
 			controllerAs: 'ctrl'
 		})
+		// *** Authentication Views ***
 		.when('/login', {
-			templateUrl: 'views/users/users-login-view.html',
-			controller: 'UserCtrl',
+			templateUrl: 'views/authentication-login-view.html',
+			controller: 'AuthenticationCtrl',
 			controllerAs: 'ctrl'
 		})
 		// *** Vendor Views ***

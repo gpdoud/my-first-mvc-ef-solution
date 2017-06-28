@@ -1,10 +1,13 @@
 angular.module("PrsApp")
 	.controller("UserCtrl", UserCtrl);
 
-UserCtrl.$inject = ["$http", "$routeParams", "$location", "UserSvc", "SystemSvc"];
+UserCtrl.$inject = ["$http", "$routeParams", "$location", "UserSvc", "SystemSvc", "AuthenticationSvc"];
 
-function UserCtrl($http, $routeParams, $location, UserSvc, SystemSvc) {
+function UserCtrl($http, $routeParams, $location, UserSvc, SystemSvc, AuthenticationSvc) {
 	var self = this;
+
+	AuthenticationSvc.VerifyUserLogin();
+	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
 
 	UserSvc.List()
 		.then(
@@ -17,36 +20,6 @@ function UserCtrl($http, $routeParams, $location, UserSvc, SystemSvc) {
 				console.log("SVC Failure.");
 			}
 		);
-
-	self.ValidateUser = function(username, password) {
-		UserSvc.List()
-		.then(
-			function(resp) {
-				Users = resp.data;
-				console.log("SVC Success!");
-				return SearchForUserAndPassword(username, password, Users);
-			},
-			function(err) {
-				Users = [];
-				console.log("SVC Failure.");
-			}
-		);
-	}
-
-	var SearchForUserAndPassword = function(username, password, users) {
-		for(var idx in users) {
-			var user = users[idx];
-			if(user.UserName.toLowerCase() === username.toLowerCase() 
-				&& user.Password === password) {
-				self.Login.Message = "Login Successful!";
-				SystemSvc.UserLoggedIn(user);
-				return true;
-			}
-		}
-		self.Login.Message = "Login failed!";
-		SystemSvc.UserLoggedOut();
-		return false;
-	}
 
 	self.SelectedUserId = $routeParams.id;
 
