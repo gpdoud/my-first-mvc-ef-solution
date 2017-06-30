@@ -1,5 +1,5 @@
-<div style="width:60%;margin:10px auto;">
-	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
+<div id="ngviewform">
+	<div id="PageTitle"><span><span ng-bind="ctrl.PageTitle"></span> Detail</span></div>
 	<div>
 		<div class="form-group row">
 			<label for="purchaseRequest-id" class="col-md-3 col-form-label">ID</label>
@@ -46,25 +46,25 @@
 		<div class="form-group row">
 			<label for="purchaseRequest-status" class="col-md-3 col-form-label">Status</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Status" id="purchaseRequest-status">
+			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.SelectedPurchaseRequest.Status" id="purchaseRequest-status">
 			</div>
 	  	</div>
 
 		<div class="form-group row">
 			<label for="purchaseRequest-total" class="col-md-3 col-form-label">Total</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" type="text" ng-model="ctrl.SelectedPurchaseRequest.Total" id="purchaseRequest-total">
+			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.SelectedPurchaseRequest.Total" id="purchaseRequest-total">
 			</div>
 	  	</div>
 
 		<div class="form-group row">
 			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
+			 	<select class="form-control" ng-disabled="!ctrl.IsUserAdmin" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
 			 	</select>
 			</div>
 	  	</div>
 
-	  	<button ng-click="ctrl.Update(ctrl.SelectedPurchaseRequest)">Update</button>
+	  	<button class="btn btn-primary col-md-2" ng-click="ctrl.Update(ctrl.SelectedPurchaseRequest)">Update</button>
 	</div>
 </div>

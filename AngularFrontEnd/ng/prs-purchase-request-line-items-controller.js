@@ -163,4 +163,38 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 		)
 	}
 
+	self.Approve = function(purchaseRequestId) {
+		SetPurchaseRequestStatus(purchaseRequestId, "APPROVED");
+	}
+
+	self.Reject = function(purchaseRequestId) {
+		SetPurchaseRequestStatus(purchaseRequestId, "REJECTED");
+	}
+
+	var SetPurchaseRequestStatus = function(purchaseRequestId, status) {
+		var PurchaseRequestToApprove = void 0;
+		PurchaseRequestSvc.Get(purchaseRequestId)
+			.then(
+				function(resp) {
+					PurchaseRequestToApprove = resp.data;
+					PurchaseRequestToApprove.Status = status;
+					ChangePurchaseRequest(PurchaseRequestToApprove);
+				},
+				function(err) {
+					console.log(err);
+				}
+			)
+	}
+	var ChangePurchaseRequest = function(PurchaseRequest) {
+		PurchaseRequestSvc.Change(PurchaseRequest)
+			.then(
+				function(resp) {
+					console.log(status, resp);
+					$location.path("/purchaseRequests/review");
+				},
+				function(err) {
+					console.log(err);
+				}
+			)	
+	}
 }

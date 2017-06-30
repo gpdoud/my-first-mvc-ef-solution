@@ -15,7 +15,9 @@ namespace MyFirstMvcEfAppProject {
 				response.ContentEncoding = ContentEncoding;
 			if (Data != null) {
 				JsonTextWriter writer = new JsonTextWriter(response.Output) { Formatting = Formatting.Indented };
-				JsonSerializer serializer = JsonSerializer.Create(new JsonSerializerSettings());
+				JsonSerializerSettings serialzerSettings = new JsonSerializerSettings();
+				serialzerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+				JsonSerializer serializer = JsonSerializer.Create(serialzerSettings);
 				serializer.Serialize(writer, Data);
 				writer.Flush();
 			}

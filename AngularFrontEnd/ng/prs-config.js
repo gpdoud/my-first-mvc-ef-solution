@@ -102,6 +102,11 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'PurchaseRequestCtrl',
 			controllerAs: 'ctrl'
 		})
+		.when('/purchaseRequests/review', {
+			templateUrl: 'views/purchaseRequests/purchaseRequests-review-view.html',
+			controller: 'PurchaseRequestCtrl',
+			controllerAs: 'ctrl'
+		})
 		// *** PurchaseRequestLineItem Views ***
 		.when('/purchaseRequestLineItems/view/:prId', 
 			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-view.html',
@@ -120,6 +125,11 @@ function PrsConfig($routeProvider, $locationProvider) {
 		})
 		.when('/purchaseRequestLineItems/add/:prId', 
 			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-create-view.html',
+			controller: 'PurchaseRequestLineItemCtrl',
+			controllerAs: 'ctrl'
+		})
+		.when('/purchaseRequestLineItems/review/:id', 
+			{templateUrl: 'views/purchaseRequestLineItems/purchaseRequestLineItems-approve-reject-view.html',
 			controller: 'PurchaseRequestLineItemCtrl',
 			controllerAs: 'ctrl'
 		})

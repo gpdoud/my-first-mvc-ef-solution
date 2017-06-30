@@ -5,6 +5,11 @@ AuthenticationCtrl.$inject = ["SystemSvc", "AuthenticationSvc","UserSvc", "$loca
 
 function AuthenticationCtrl(SystemSvc, AuthenticationSvc, UserSvc, $location) {
 	var self = this;
+	self.Login = {
+		UserName : "sa",
+		Password : "sa"
+	};
+	
 	self.IsUserLoggedIn = AuthenticationSvc.IsUserLoggedIn();
 
 	self.ValidateUser = function(username, password) {

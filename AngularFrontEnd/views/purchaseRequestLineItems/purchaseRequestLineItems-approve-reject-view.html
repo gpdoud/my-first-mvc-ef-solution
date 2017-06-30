@@ -1,0 +1,46 @@
+<div id="ngviewlist">
+	<div>
+		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
+		<span> - </span>
+		<span id="PageAddLink">
+		<a href="#/purchaseRequestLineItems/add/{{ctrl.SelectedPurchaseRequest.ID}}">Create New</a></span>	
+		<span> - </span>
+		<label>Search: <input ng-model="ctrl.SearchCriteria"></label>
+		<span> - </span>
+		<label>Sort: 
+			<select ng-model="ctrl.SortProperty">
+				<option ng-repeat="field in ['','Code','Name','Address','City','State','Zip','Phone','Email']">{{field}}</option>
+			</select>
+		</label>
+		<div>
+			<table class="table">
+				<thead>
+					<tr><th>ID</th><th>Description</th><th>Total</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>{{ctrl.SelectedPurchaseRequest.ID}}</td><td>{{ctrl.SelectedPurchaseRequest.Description}}</td><td>{{ctrl.SelectedPurchaseRequest.Total | currency}}</td></tr>
+				</tbody>
+			</table>
+		</div>
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Product</td>
+					<td>Quantity</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="purchaseRequestLineItem in ctrl.PurchaseRequestLineItems | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
+					<td><span ng-bind="purchaseRequestLineItem.Product.Name"></span></td>
+					<td><span ng-bind="purchaseRequestLineItem.Quantity"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+		  	<button class="btn btn-success col-sm-2 col-xs-offset-1" ng-click="ctrl.Approve(ctrl.SelectedPurchaseRequestId)">Approve</button>
+		  	<button class="btn btn-danger col-sm-2 col-xs-offset-1" ng-click="ctrl.Reject(ctrl.SelectedPurchaseRequestId)">Reject</button>
+		</div>
+	</div>
+</div>

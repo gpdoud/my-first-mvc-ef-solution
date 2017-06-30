@@ -1,4 +1,4 @@
-<div style="width:60%;margin:10px auto;">
+<div id="ngviewform">
 	<div><span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> Add</span></div>
 	<div>
 	<!-- copy goes here -->
@@ -61,8 +61,7 @@
 		<div class="form-group row">
 			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.NewPurchaseRequest.UserId" id="purchaseRequest-user">
-			 		<option ng-repeat="user in ctrl.Users" value={{user.ID}}>{{user.LastName}}</option>
+			 	<select class="form-control" disabled="disabled" ng-model="ctrl.NewPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
 			 	</select>
 			</div>
 	  	</div>

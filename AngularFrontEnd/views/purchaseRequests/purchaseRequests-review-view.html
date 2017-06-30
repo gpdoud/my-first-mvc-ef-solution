@@ -1,0 +1,50 @@
+<div id="ngviewlist">
+	<div>
+		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
+		<!-- <span id="PageAddLink"> - <a href="#/purchaseRequests/add">Create New</a></span>	 -->
+		<span> - <label>Search: <input ng-model="ctrl.SearchCriteria"></label></span>
+		<span> - <label>Sort: 
+			<select ng-model="ctrl.SortProperty">
+				<option ng-repeat="field in ['','Code','Name','Address','City','State','Zip','Phone','Email']">{{field}}</option>
+			</select>
+		</label></span>
+		<span> :: <label ng-bind="ctrl.AuthenticatedUser.Name"></label>
+			<span ng-show="ctrl.AuthenticatedUser.IsAdmin"> [ADM]</span>
+		</span>
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<td>Description</td>
+						<td>Justification</td>
+						<td>DateNeeded</td>
+						<td>DeliveryMode</td>
+						<!-- <td>DocsAttached</td> -->
+						<td>Status</td>
+						<td>Total</td>
+						<td>User</td>
+						<td>Action</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="purchaseRequest in ctrl.PurchaseRequestsToReview | filter: ctrl.SearchCriteria | orderBy: ctrl.SortProperty">
+						<td><span ng-bind="purchaseRequest.Description"></span></td>
+						<td><span ng-bind="purchaseRequest.Justification"></span></td>
+						<td><span ng-bind="purchaseRequest.DateNeeded | date: 'MM/dd/yyyy'"></span></td>
+						<td><span ng-bind="purchaseRequest.DeliveryMode"></span></td>
+						<!-- <td><span ng-bind="purchaseRequest.DocsAttached"></span></td> -->
+						<td><span ng-bind="purchaseRequest.Status"></span></td>
+						<td><span ng-bind="purchaseRequest.Total | currency"></span></td>
+						<td><span ng-bind="purchaseRequest.User.LastName"></span></td>
+						<td>
+							<span><a href="#/purchaseRequestLineItems/review/0?prId={{purchaseRequest.ID}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
+<!-- 						<span> <a href="#/purchaseRequests/edit/{{purchaseRequest.ID}}"><span 										class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+						 	<span> <a href="#/purchaseRequestLineItems/view/{{purchaseRequest.ID}}"><span class="glyphicon glyphicon-th-list" title="Lines"></span></a></span>
+ -->					
+ 						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
