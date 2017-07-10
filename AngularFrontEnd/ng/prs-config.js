@@ -60,6 +60,11 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'VendorCtrl',
 			controllerAs: 'ctrl'
 		})
+		.when('/vendors/po/:id', {
+			templateUrl: 'views/vendors/vendors-po-view.html',
+			controller: 'VendorCtrl',
+			controllerAs: 'ctrl'
+		})
 		// *** Product Views ***
 		.when('/products', {
 			templateUrl: 'views/products/products-view.html',
