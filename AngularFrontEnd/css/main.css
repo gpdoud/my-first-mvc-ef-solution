@@ -34,3 +34,17 @@ thead {
 #ngviewlist {
 
 }
+#homecontent {
+	/*width: 80%;*/
+	margin: 0 auto;
+}
+#homecontentleft, #homecontentright {
+	display: inline-block;
+	vertical-align: text-top;
+}
+#homecontentleft {
+	width: 65%;
+}
+#homecontentright {
+	width: 30%;
+}
