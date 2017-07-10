@@ -7,6 +7,7 @@ thead {
 	font-style: italic;
 }
 #ngview {
+	font-size: 1.1em;
 	padding: 0 10px;
 	margin-top: 5em;
 	/*background-color: white;*/
@@ -44,7 +45,16 @@ thead {
 }
 #homecontentleft {
 	width: 65%;
+	margin-right: 35px;
 }
 #homecontentright {
 	width: 30%;
+}
+#aboutcontent {
+	margin: 5px 0 0 0;
+}
+#portrait {
+	float: left;
+	vertical-align: top;
+	margin: 0 10px 10px 0;
 }
