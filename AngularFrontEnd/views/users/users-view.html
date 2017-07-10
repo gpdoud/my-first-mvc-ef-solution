@@ -36,9 +36,9 @@
 					<td><span ng-bind="user.IsReviewer"></span></td>
 					<td><span ng-bind="user.IsAdmin"></span></td>
 					<td>
-						<span><a href="#/users/detail/{{user.ID}}">Detail</a></span>
-						<span ng-if="ctrl.IsUserAdmin">| <a href="#/users/edit/{{user.ID}}">Edit</a></span>
-						<span ng-if="ctrl.IsUserAdmin">| <a href="#/users/remove/{{user.ID}}">Delete</a></span>
+						<span><a href="#/users/detail/{{user.ID}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
+						<span ng-if="ctrl.IsUserAdmin"><a href="#/users/edit/{{user.ID}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+						<!-- <span ng-if="ctrl.IsUserAdmin"><a href="#/users/remove/{{user.ID}}"></a></span> -->
 					</td>
 				</tr>
 			</tbody>

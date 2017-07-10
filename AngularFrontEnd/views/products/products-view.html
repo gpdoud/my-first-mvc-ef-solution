@@ -30,9 +30,9 @@
 					<td><span ng-bind="product.PhotoPath"></span></td>
 					<td><span ng-bind="product.Vendor.Name"></span></td>
 					<td>
-						<span><a href="#/products/detail/{{product.ID}}">Detail</a></span>
-						<span ng-if="ctrl.IsUserAdmin"> | <a href="#/products/edit/{{product.ID}}">Edit</a></span>
-						<span ng-if="ctrl.IsUserAdmin"> | <a href="#/products/remove/{{product.ID}}">Delete</a></span>
+						<span><a href="#/products/detail/{{product.ID}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
+						<span ng-if="ctrl.IsUserAdmin"><a href="#/products/edit/{{product.ID}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+						<!-- <span ng-if="ctrl.IsUserAdmin"><a href="#/products/remove/{{product.ID}}"></a></span> -->
 					</td>
 				</tr>
 			</tbody>

@@ -46,7 +46,9 @@
 		<div class="form-group row">
 			<label for="purchaseRequest-status" class="col-md-3 col-form-label">Status</label>
 			 <div class="col-md-9">
-			 	<input class="form-control" disabled="disabled" type="text" ng-model="ctrl.SelectedPurchaseRequest.Status" id="purchaseRequest-status">
+			 	<select class="form-control" ng-disabled="!ctrl.AuthenticatedUser.IsAdmin" ng-model="ctrl.SelectedPurchaseRequest.Status" id="purchaseRequest-status">
+			 		<option ng-repeat="status in ctrl.PurchaseRequestStatuses" value={{status}}>{{status}}
+			 	</select>
 			</div>
 	  	</div>
 
@@ -60,7 +62,7 @@
 		<div class="form-group row">
 			<label for="purchaseRequest-user" class="col-md-3 col-form-label">User</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-disabled="!ctrl.IsUserAdmin" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
+			 	<select class="form-control" ng-disabled="!ctrl.AuthenticatedUser.IsAdmin" ng-model="ctrl.SelectedPurchaseRequest.UserId" id="purchaseRequest-user" ng-options="user.ID as user.LastName for user in ctrl.Users">
 			 	</select>
 			</div>
 	  	</div>
