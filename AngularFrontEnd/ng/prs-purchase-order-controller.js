@@ -59,9 +59,9 @@ function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseR
 			var prln = tempPrLines[key];
 			var poLine = {
 				Product: prln.PurchaseRequestLineItem.Product.Name,
-				Quantity: prln.PurchaseRequestLineItem.Quantity,
+				Quantity: prln.Quantity,
 				Price: prln.PurchaseRequestLineItem.Product.Price * .7,
-				LineTotal: prln.PurchaseRequestLineItem.Quantity * prln.PurchaseRequestLineItem.Product.Price * .7
+				LineTotal: prln.Quantity * prln.PurchaseRequestLineItem.Product.Price * .7
 			};
 			self.PO.LineItems.push(poLine);
 		}
@@ -73,7 +73,7 @@ function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseR
 		}
 		// calcuate tax and shipping
 		self.PO.Tax = self.PO.Subtotal * .1;
-		self.PO.Shipping = self.PO.Subtotal * .5;
+		self.PO.Shipping = self.PO.Subtotal * .05;
 		// calcualte grand total
 		self.PO.Total = self.PO.Subtotal + self.PO.Tax + self.PO.Shipping;
 	}
