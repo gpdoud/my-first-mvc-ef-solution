@@ -1,0 +1,53 @@
+<div id="ngviewlist" class="container po">
+	<table class='table table-borderless'>
+		<thead>
+		<tr><th>Vendor</th><th>Customer</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>
+			<address>
+				<span ng-bind='ctrl.PO.Vendor.Name'></span><br />
+				<span ng-bind='ctrl.PO.Vendor.Address'></span><br />
+				<span ng-bind='ctrl.PO.Vendor.City'></span>, <span ng-bind='ctrl.PO.Vendor.State'></span> <span ng-bind='ctrl.PO.Vendor.Zip'></span>
+			</address>
+			</td>
+			<td><span ng-bind='ctrl.PO.Customer.FirstName'></span> <span ng-bind='ctrl.PO.Customer.LastName'></span></td></tr>
+		</tbody>
+	</table>
+	<table class='table'>
+		<thead>
+			<tr>
+				<td><span>Product</span></td>
+				<td class='text-center'><span>Quantity</span></td>
+				<td class='text-right'><span>Price (70%)</span></td>
+				<td class='text-right'><span>Line Total</span></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class='' ng-repeat='poLine in ctrl.PO.LineItems'>
+				<td><span ng-bind='poLine.Product'></span></td>
+				<td class='text-center'><span ng-bind='poLine.Quantity'></span></td>
+				<td class='text-right'><span ng-bind='poLine.Price | currency'></span></td>
+				<td class='text-right'><span ng-bind='poLine.LineTotal | currency'></span></td>
+			</tr>
+			<tr>
+				<td class='text-right' colspan="3"><span>Subtotal:</span></td>
+				<td class='text-right'><span ng-bind='ctrl.PO.Subtotal | currency'></span></td>
+			</tr>
+			<tr>
+				<td class='text-right' colspan="3">
+					<span>Tax (10%) :</span><br />
+					<span>Shipping (5%) :</span>
+				</td>
+				<td class='text-right'>
+					<span ng-bind='ctrl.PO.Tax | currency'></span><br />
+					<span ng-bind='ctrl.PO.Shipping | currency'>
+				</td>
+			</tr>
+			<tr>
+				<td class='text-right' colspan="3"><strong><span>Total:</span></strong></td>
+				<td class='text-right'><strong><span ng-bind='ctrl.PO.Total | currency'></span></strong></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

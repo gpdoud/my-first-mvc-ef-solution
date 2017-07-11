@@ -53,8 +53,8 @@
 				</tr>
 			</tbody>
 		</table>
-	<span ng-if="ctrl.IsUserAdmin"><a href="#/users/edit/{{ctrl.SelectedUser.ID}}">Edit</a></span>
-		  	<span ng-if="ctrl.IsUserAdmin"><button ng-click="ctrl.Remove(ctrl.SelectedUser.ID)">Delete</button></span>
+	<span ng-if="ctrl.IsUserAdmin"><a href="#/users/edit/{{ctrl.SelectedUser.ID}}" class='btn btn-primary'>Edit</a></span>
+		  	<span ng-if="ctrl.IsUserAdmin"><button ng-click="ctrl.Remove(ctrl.SelectedUser.ID)" class='btn btn-danger'>Delete</button></span>
 
 	</div>
 </div>

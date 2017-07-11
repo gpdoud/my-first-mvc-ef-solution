@@ -60,9 +60,15 @@ function PrsConfig($routeProvider, $locationProvider) {
 			controller: 'VendorCtrl',
 			controllerAs: 'ctrl'
 		})
-		.when('/vendors/po/:id', {
-			templateUrl: 'views/vendors/vendors-po-view.html',
-			controller: 'VendorCtrl',
+		// .when('/vendors/po/:id', {
+		// 	templateUrl: 'views/vendors/vendors-po-view.html',
+		// 	controller: 'VendorCtrl',
+		// 	controllerAs: 'ctrl'
+		// })
+		// *** Purchase Order ***
+		.when('/purchaseOrder/po/:id', {
+			templateUrl: 'views/purchaseOrder/purchaseOrder-po-view.html',
+			controller: 'PurchaseOrderCtrl',
 			controllerAs: 'ctrl'
 		})
 		// *** Product Views ***

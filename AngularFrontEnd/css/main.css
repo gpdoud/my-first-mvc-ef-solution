@@ -58,6 +58,20 @@ thead {
 	vertical-align: top;
 	margin: 0 10px 10px 0;
 }
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
 .top2em {
 	padding-top: 2em;
+}
+.po {
+	width: 70%;
+	margin: 0 auto;
+	border: 1px solid silver;
+	padding: 5px 5px 35px 5px;
 }

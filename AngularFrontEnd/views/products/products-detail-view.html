@@ -39,8 +39,8 @@
 				</tr>
 			</tbody>
 		</table>
-	<span ng-if="ctrl.IsUserAdmin"><a href="#/products/edit/{{ctrl.SelectedProduct.ID}}">Edit</a> |
-		  	<button ng-click="ctrl.Remove(ctrl.SelectedProduct.ID)">Delete</button></span>
+	<span ng-if="ctrl.IsUserAdmin"><a href="#/products/edit/{{ctrl.SelectedProduct.ID}}" class='btn btn-primary'>Edit</a> |
+		  	<button ng-click="ctrl.Remove(ctrl.SelectedProduct.ID)" class='btn btn-danger'>Delete</button></span>
 
 	</div>
 </div>
