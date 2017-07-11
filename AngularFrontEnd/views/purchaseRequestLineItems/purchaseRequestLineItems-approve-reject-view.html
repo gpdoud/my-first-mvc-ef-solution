@@ -4,10 +4,12 @@
 		<div>
 			<table class="table">
 				<thead>
-					<tr><th>ID</th><th>Description</th><th>Justification</th><th>Total</th></tr>
+					<tr><th>ID</th><th>Description</th><th>Justification</th><th>Status</th><th>Total</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>{{ctrl.SelectedPurchaseRequest.ID}}</td><td>{{ctrl.SelectedPurchaseRequest.Description}}</td><td>{{ctrl.SelectedPurchaseRequest.Justification}}</td><td>{{ctrl.SelectedPurchaseRequest.Total | currency}}</td></tr>
+					<tr><td>{{ctrl.SelectedPurchaseRequest.ID}}</td><td>{{ctrl.SelectedPurchaseRequest.Description}}</td><td>{{ctrl.SelectedPurchaseRequest.Justification}}</td>
+					<td>{{ctrl.SelectedPurchaseRequest.Status}}</td>
+					<td>{{ctrl.SelectedPurchaseRequest.Total | currency}}</td></tr>
 					
 				</tbody>
 			</table>
