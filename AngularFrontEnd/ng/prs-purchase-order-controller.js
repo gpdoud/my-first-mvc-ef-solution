@@ -1,9 +1,9 @@
 angular.module('PrsApp')
 	.controller('PurchaseOrderCtrl', PurchaseOrderCtrl);
 
-PurchaseOrderCtrl.$inject = ["$routeParams", "$location", 'AuthenticationSvc', 'PurchaseRequestLineItemSvc', 'VendorSvc'];
+PurchaseOrderCtrl.$inject = ["$routeParams", "$location", 'AuthenticationSvc', 'PurchaseRequestLineItemSvc', 'VendorSvc', 'PurchaseRequestSvc'];
 
-function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseRequestLineItemSvc, VendorSvc) {
+function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseRequestLineItemSvc, VendorSvc, PurchaseRequestSvc) {
 	var self = this;
 	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
 	self.SelectedVendorId = $routeParams.id;
@@ -26,7 +26,7 @@ function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseR
 				for(var idx in resp.data) {
 					var purchaseRequestLineItem = resp.data[idx];
 					if(purchaseRequestLineItem.Product.VendorId === Number(id) &&
-						purchaseRequestLineItem.PurchaseRequest.Status === 'APPROVED') {
+						purchaseRequestLineItem.PurchaseRequest.Status === PurchaseRequestSvc.PurchaseRequestStatus.Approved) {
 						purchaseRequestLineItemsForVendor.push(purchaseRequestLineItem);
 					}
 				}
