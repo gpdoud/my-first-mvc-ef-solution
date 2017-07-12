@@ -25,7 +25,8 @@ function PurchaseOrderCtrl($routeParams, $location, AuthenticationSvc, PurchaseR
 			function(resp) {
 				for(var idx in resp.data) {
 					var purchaseRequestLineItem = resp.data[idx];
-					if(purchaseRequestLineItem.Product.VendorId === Number(id)) {
+					if(purchaseRequestLineItem.Product.VendorId === Number(id) &&
+						purchaseRequestLineItem.PurchaseRequest.Status === 'APPROVED') {
 						purchaseRequestLineItemsForVendor.push(purchaseRequestLineItem);
 					}
 				}
