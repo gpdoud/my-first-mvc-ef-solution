@@ -7,6 +7,21 @@ function Svc($http, SystemSvc) {
 	var self = this;
 	var url = SystemSvc.AjaxUrl;
 	var ctrlr = "PurchaseRequests"; // <<< THIS MUST CHANGE FOR NEW SERVICES
+	self.PurchaseRequestStatus = {
+		New : "NEW",
+		InProcess: "INPROCESS",
+		Review: "REVIEW",
+		Approved: "APPROVED",
+		Rejected: "REJECTED"
+	};
+	self.PurchaseRequestStatuses = [
+		self.PurchaseRequestStatus.New,
+		self.PurchaseRequestStatus.InProcess,
+		self.PurchaseRequestStatus.Review,
+		self.PurchaseRequestStatus.Approved,
+		self.PurchaseRequestStatus.Rejected
+	];
+
 	self.GetPurchaseRequestId = function() {
 		return self.PurchaseRequestId;
 	}

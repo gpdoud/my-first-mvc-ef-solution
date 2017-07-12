@@ -15,18 +15,8 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	}
 	
 	self.SelectedPurchaseRequestId = $routeParams.id;
-	self.PurchaseRequestStatus = {
-		New : "NEW",
-		Review: "REVIEW",
-		Approved: "APPROVED",
-		Rejected: "REJECTED"
-	};
-	self.PurchaseRequestStatuses = [
-		self.PurchaseRequestStatus.New,
-		self.PurchaseRequestStatus.Review,
-		self.PurchaseRequestStatus.Approved,
-		self.PurchaseRequestStatus.Rejected
-	];
+	self.PurchaseRequestStatus = PurchaseRequestSvc.PurchaseRequestStatus;
+	self.PurchaseRequestStatuses = PurchaseRequestSvc.PurchaseRequestStatuses;
 	self.NewPurchaseRequest = {
 		Status: self.PurchaseRequestStatus.New,
 		DateNeeded: SystemSvc.ConvertToJsonDate(new Date()),
