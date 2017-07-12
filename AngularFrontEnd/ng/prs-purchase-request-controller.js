@@ -13,6 +13,7 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 		IsAdmin: AuthenticationSvc.IsUserAdmin(),
 		IsReviewer: AuthenticationSvc.IsUserReviewer()
 	}
+	self.RemoteService = SystemSvc.RemoteService;
 	
 	self.SelectedPurchaseRequestId = $routeParams.id;
 	self.PurchaseRequestStatus = PurchaseRequestSvc.PurchaseRequestStatus;

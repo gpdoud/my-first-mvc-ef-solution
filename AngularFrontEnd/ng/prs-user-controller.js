@@ -7,7 +7,13 @@ function UserCtrl($http, $routeParams, $location, UserSvc, SystemSvc, Authentica
 	var self = this;
 
 	AuthenticationSvc.VerifyUserLogin();
-	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
+	self.AuthenticatedUser = {
+		Name: AuthenticationSvc.GetAuthenticatedUserNickname(),
+		IsAdmin: AuthenticationSvc.IsUserAdmin(),
+		IsReviewer: AuthenticationSvc.IsUserReviewer()
+	}
+	self.RemoteService = SystemSvc.RemoteService;
+	// self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
 
 	UserSvc.List()
 		.then(

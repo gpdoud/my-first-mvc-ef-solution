@@ -6,7 +6,13 @@ ProductCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc", "Authe
 function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSvc) {
 	var self = this;
 	AuthenticationSvc.VerifyUserLogin();
-	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
+	self.AuthenticatedUser = {
+		Name: AuthenticationSvc.GetAuthenticatedUserNickname(),
+		IsAdmin: AuthenticationSvc.IsUserAdmin(),
+		IsReviewer: AuthenticationSvc.IsUserReviewer()
+	}
+	self.RemoteService = SystemSvc.RemoteService;
+	// self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
 
 	self.SelectedProductId = $routeParams.id;
 

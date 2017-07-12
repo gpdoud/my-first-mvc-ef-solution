@@ -1,13 +1,18 @@
 <div id="ngviewlist">
 	<div>
 		<span id="PageTitle"><span ng-bind="ctrl.PageTitle"></span> List</span>
-		<span ng-if="ctrl.IsUserAdmin" id="PageAddLink">- <a href="#/users/add">Create New</a></span>	
+		<span ng-if="ctrl.AuthenticatedUser.IsAdmin" id="PageAddLink">- <a href="#/users/add">Create New</a></span>	
 		<span><label> - Search: <input ng-model="ctrl.SearchCriteria"></label></span>
 		<span><label> - Sort: 
 			<select ng-model="ctrl.SortProperty">
 				<option ng-repeat="field in ['','FirstName','LastName','Phone','Email']">{{field}}</option>
 			</select></label></span>
-		<span ng-if="ctrl.IsUserAdmin" > - <label><button ng-click="ctrl.ToggleDisplayPassword()">Toggle Display Passwords</button></label></span>
+		<span ng-if="ctrl.AuthenticatedUser.IsAdmin" > - <label><button ng-click="ctrl.ToggleDisplayPassword()">Toggle Display Passwords</button></label></span>
+		<span> :: <label ng-bind="ctrl.AuthenticatedUser.Name"></label>
+			<span ng-show="ctrl.AuthenticatedUser.IsAdmin"> [ADM]</span>
+			<span ng-if="ctrl.RemoteService"> (REMOTE)</span>
+			<span ng-if="!ctrl.RemoteService"> (LOCAL)</span>
+		</span>
 	<div>
 		<table class="table">
 			<thead>
@@ -37,7 +42,7 @@
 					<td><span ng-bind="user.IsAdmin"></span></td>
 					<td>
 						<span><a href="#/users/detail/{{user.ID}}"><span class="glyphicon glyphicon-list-alt" title="Detail"></span></a></span>
-						<span ng-if="ctrl.IsUserAdmin"><a href="#/users/edit/{{user.ID}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
+						<span ng-if="ctrl.AuthenticatedUser.IsAdmin"><a href="#/users/edit/{{user.ID}}"><span class="glyphicon glyphicon-pencil" title="Edit"></span></a></span>
 						<!-- <span ng-if="ctrl.IsUserAdmin"><a href="#/users/remove/{{user.ID}}"></a></span> -->
 					</td>
 				</tr>

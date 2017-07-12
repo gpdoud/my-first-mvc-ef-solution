@@ -10,6 +10,8 @@
 		</label></span>
 		<span> :: <label ng-bind="ctrl.AuthenticatedUser.Name"></label>
 			<span ng-show="ctrl.AuthenticatedUser.IsAdmin"> [ADM]</span>
+			<span ng-if="ctrl.RemoteService"> (REMOTE)</span>
+			<span ng-if="!ctrl.RemoteService"> (LOCAL)</span>
 		</span>
 		<div>
 			<table class="table">
