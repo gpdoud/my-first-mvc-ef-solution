@@ -38,7 +38,7 @@ function Svc($http, SystemSvc) {
 		return $http.post(url + "/" + ctrlr + "/Change", inst);
 	}
 	self.Remove = function(id) {
-		return $http.delete(url + "/" + ctrlr + "/Remove/" + id);
+		return $http.post(url + "/" + ctrlr + "/Remove/" + id);
 	}
 	self.Add = function(inst) {
 		return $http.post(url + "/" + ctrlr + "/Add", inst);

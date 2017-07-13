@@ -11,8 +11,7 @@
 		<div class="form-group row">
 			<label for="purchaseRequestLineItem-product" class="col-md-3 col-form-label">Product</label>
 			 <div class="col-md-9">
-			 	<select class="form-control" ng-model="ctrl.SelectedPurchaseRequestLineItem.ProductId" id="purchaseRequestLineItem-product">
-			 		<option ng-repeat="product in ctrl.Products" value="{{product.ID}}">{{product.Name}}</option>
+			 	<select class="form-control" ng-model="ctrl.SelectedPurchaseRequestLineItem.ProductId" id="purchaseRequestLineItem-product" ng-options="product.ID as product.Name for product in ctrl.Products">
 			 	</select>
 			</div>
 	  	</div>

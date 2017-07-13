@@ -1,9 +1,11 @@
 angular.module("PrsApp")
 	.controller("PurchaseRequestLineItemCtrl", PurchaseRequestLineItemCtrl);
 
-PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location", "$route", "PurchaseRequestSvc", "SystemSvc", "AuthenticationSvc"];
+PurchaseRequestLineItemCtrl.$inject = ["$http", "$routeParams", "$location", "$route", 
+				"PurchaseRequestSvc", "SystemSvc", "AuthenticationSvc", 'ProductSvc', 'PurchaseRequestLineItemSvc'];
 
-function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, PurchaseRequestSvc, SystemSvc, AuthenticationSvc) {
+function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, 
+				PurchaseRequestSvc, SystemSvc, AuthenticationSvc, ProductSvc, PurchaseRequestLineItemSvc) {
 	var self = this;
 	AuthenticationSvc.VerifyUserLogin();
 	self.IsUserAdmin = AuthenticationSvc.IsUserAdmin();
@@ -19,7 +21,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	self.PurchaseRequests = [];
 
 	self.GetProducts = function() {
-		$http.get("http://localhost:62008/Products/List")
+		ProductSvc.List()
 			.then(
 				// if successful
 				function(resp) {
@@ -38,8 +40,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	self.GetPurchaseRequest = function(id) {
 		if(typeof id == 'undefined')
 			return;
-		$http.get("http://localhost:62008/PurchaseRequests/Get/"+id)	
-		// $http.get("http://localhost:62008/api/PurchaseRequests/"+id.toString())	
+		PurchaseRequestSvc.Get(id)	
 			.then(
 				// if successful
 				function(resp) {
@@ -59,30 +60,28 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	}
 	self.GetPurchaseRequest(self.SelectedPurchaseRequestId);	
 
-	self.GetPurchaseRequestLineItems = function(prId) {
-		var action = (prId == undefined) ? "List" : "ListByPurchaseRequest/" + prId.toString();
-		$http.get("http://localhost:62008/PurchaseRequestLineItems/" + action)
-		// $http.get("http://localhost:62008/api/PurchaseRequests")
+	self.GetPurchaseRequestLineItems = function() {
+		PurchaseRequestLineItemSvc.List()
 			.then(
-				// if successful
 				function(resp) {
 					console.log("[LIST] SUCCESS!", resp);
 					self.PurchaseRequestLineItems = resp.data;
-					// if(prId == undefined) {
-					// self.PurchaseRequestLineItems = resp.data;
-					// } else {
-					// 	self.PurchaseRequestLineItems = [];
-					// 	for(var idx in resp.data) {
-					// 		var prItem = resp.data[idx];
-					// 		if(prItem.PurchaseRequestId == prId) {
-					// 			self.PurchaseRequestLineItems.push(prItem);
-					// 		}
-					// 	}
-					// }
 				},
-				// if error
 				function(err) {
 					console.log("[LIST] ERROR:", err);
+
+				}
+			)
+	}
+	self.GetPurchaseRequestLineItems = function(prId) {
+		PurchaseRequestLineItemSvc.GetByPurchaseRequestId(prId)
+			.then(
+				function(resp) {
+					console.log("[GetByPurchaseRequestId] SUCCESS!", resp);
+					self.PurchaseRequestLineItems = resp.data;
+				},
+				function(err) {
+					console.log("[GetByPurchaseRequestId] ERROR:", err);
 
 				}
 			)
@@ -92,8 +91,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	self.GetPurchaseRequestLineItem = function(id) {
 		if(id == undefined)
 			return;
-		$http.get("http://localhost:62008/PurchaseRequestLineItems/Get/"+id.toString())	
-		// $http.get("http://localhost:62008/api/PurchaseRequests/"+id.toString())	
+		PurchaseRequestLineItemSvc.Get(id)	
 			.then(
 				// if successful
 				function(resp) {
@@ -110,8 +108,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	self.GetPurchaseRequestLineItem(self.SelectedPurchaseRequestLineItemId);
 
 	self.Update = function(PurchaseRequestLineItem) {
-		$http.post("http://localhost:62008/PurchaseRequestLineItems/Change", PurchaseRequestLineItem)
-		// $http.post("http://localhost:62008/api/PurchaseRequests", PurchaseRequest)
+		PurchaseRequestLineItemSvc.Change(PurchaseRequestLineItem)
 			.then(
 				// if successful
 				function(resp) {
@@ -127,8 +124,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 	}
 
 	self.Remove = function(id) {
-		$http.delete("http://localhost:62008/PurchaseRequestLineItems/Remove/" + id.toString())
-		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
+		PurchaseRequestLineItemSvc.Remove(id)
 		.then(
 			// if successful
 			function(resp) {
@@ -147,8 +143,7 @@ function PurchaseRequestLineItemCtrl($http, $routeParams, $location, $route, Pur
 
 	self.Add = function(PurchaseRequestLineItem) {
 		PurchaseRequestLineItem.PurchaseRequestId = self.SelectedPurchaseRequestId;
-		$http.post("http://localhost:62008/PurchaseRequestLineItems/add", PurchaseRequestLineItem)
-		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
+		PurchaseRequestLineItemSvc.Add(PurchaseRequestLineItem)
 		.then(
 			// if successful
 			function(resp) {

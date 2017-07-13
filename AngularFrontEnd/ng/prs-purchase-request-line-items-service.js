@@ -22,4 +22,7 @@ function Svc($http, SystemSvc) {
 	self.Add = function(inst) {
 		return $http.post(url + "/" + ctrlr + "/Add", inst);
 	}
+	self.GetByPurchaseRequestId = function(id) {
+		return $http.get(url + "/" + ctrlr + "/ListByPurchaseRequest/" + id);	
+	}
 };

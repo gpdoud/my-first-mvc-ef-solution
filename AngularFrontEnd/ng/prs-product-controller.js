@@ -1,9 +1,11 @@
 angular.module("PrsApp")
 	.controller("ProductCtrl", ProductCtrl);
 
-ProductCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc", "AuthenticationSvc"];
+ProductCtrl.$inject = ["$http", "$routeParams", "$location", "SystemSvc", "AuthenticationSvc", 
+					'VendorSvc', 'ProductSvc'];
 
-function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSvc) {
+function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSvc, 
+					VendorSvc, ProductSvc) {
 	var self = this;
 	AuthenticationSvc.VerifyUserLogin();
 	self.AuthenticatedUser = {
@@ -21,8 +23,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	self.Products = [];
 
 	self.GetVendors = function() {
-		$http.get("http://localhost:62008/Vendors/List")
-		// $http.get("http://localhost:62008/api/Products")
+		VendorSvc.List()
 			.then(
 				// if successful
 				function(resp) {
@@ -39,8 +40,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	self.GetVendors();
 
 	self.GetProducts = function() {
-		$http.get("http://localhost:62008/Products/List")
-		// $http.get("http://localhost:62008/api/Products")
+		ProductSvc.List()
 			.then(
 				// if successful
 				function(resp) {
@@ -59,8 +59,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	self.GetProduct = function(id) {
 		if(id == undefined)
 			return;
-		$http.get("http://localhost:62008/Products/Get/"+id.toString())	
-		// $http.get("http://localhost:62008/api/Products/"+id.toString())	
+		ProductSvc.Get(id)	
 			.then(
 				// if successful
 				function(resp) {
@@ -77,8 +76,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	self.GetProduct(self.SelectedProductId);
 
 	self.Update = function(Product) {
-		$http.post("http://localhost:62008/Products/Change", Product)
-		// $http.post("http://localhost:62008/api/Products", Product)
+		ProductSvc.Change(Product)
 			.then(
 				// if successful
 				function(resp) {
@@ -94,8 +92,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	}
 
 	self.Remove = function(id) {
-		$http.delete("http://localhost:62008/Products/Remove/" + id.toString())
-		// $http.delete("http://localhost:62008/api/Products/" + id.toString())
+		ProductSvc.Remove(id)
 		.then(
 			// if successful
 			function(resp) {
@@ -111,8 +108,7 @@ function ProductCtrl($http, $routeParams, $location, SystemSvc, AuthenticationSv
 	}
 
 	self.Add = function(Product) {
-		$http.post("http://localhost:62008/Products/add", Product)
-		// $http.delete("http://localhost:62008/api/Products/" + id.toString())
+		ProductSvc.Add(Product)
 		.then(
 			// if successful
 			function(resp) {

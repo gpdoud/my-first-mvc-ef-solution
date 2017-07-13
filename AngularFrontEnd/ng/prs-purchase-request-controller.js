@@ -31,7 +31,7 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	self.PageTitle = "PurchaseRequest";
 
 	self.GetUsers = function() {
-		$http.get("http://localhost:62008/Users/List")
+		UserSvc.List()
 			.then(
 				// if successful
 				function(resp) {
@@ -48,8 +48,6 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	self.GetUsers();
 
 	self.GetPurchaseRequests = function() {
-		// $http.get("http://localhost:62008/PurchaseRequests/List")
-		// $http.get("http://localhost:62008/api/PurchaseRequests")
 		PurchaseRequestSvc.List()
 			.then(
 				// if successful
@@ -83,8 +81,6 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	self.GetPurchaseRequest = function(id) {
 		if(id == undefined)
 			return;
-		// $http.get("http://localhost:62008/PurchaseRequests/Get/"+id)	
-		// $http.get("http://localhost:62008/api/PurchaseRequests/"+id.toString())	
 		PurchaseRequestSvc.Get(id)
 			.then(
 				// if successful
@@ -132,8 +128,6 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	}
 
 	self.Update = function(PurchaseRequest) {
-		// $http.post("http://localhost:62008/PurchaseRequests/Change", PurchaseRequest)
-		// $http.post("http://localhost:62008/api/PurchaseRequests", PurchaseRequest)
 		PurchaseRequestSvc.Change(PurchaseRequest)
 			.then(
 				// if successful
@@ -150,9 +144,7 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 	}
 
 	self.Remove = function(id) {
-		// $http.delete("http://localhost:62008/PurchaseRequests/Remove/" + id.toString())
-		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
-		PurchaseRequestSvc.Delete(id)
+		PurchaseRequestSvc.Remove(id)
 		.then(
 			// if successful
 			function(resp) {
@@ -169,8 +161,6 @@ function PurchaseRequestCtrl($http, $routeParams, $location
 
 	self.Add = function(PurchaseRequest) {
 		PurchaseRequest.Status = self.PurchaseRequestStatus.New;
-		// $http.post("http://localhost:62008/PurchaseRequests/add", PurchaseRequest)
-		// $http.delete("http://localhost:62008/api/PurchaseRequests/" + id.toString())
 		PurchaseRequestSvc.Add(PurchaseRequest)
 		.then(
 			// if successful
